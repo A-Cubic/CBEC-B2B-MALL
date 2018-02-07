@@ -1,0 +1,347 @@
+.content_w{
+    width:1200px ;
+}
+.blue{
+    color: #0b60ad;
+}
+.blank{
+    color: #555;
+}
+/*
+   Font Size
+========================================================
+*/
+.f-10{
+    font-size: 10px;
+}
+.f-12{
+    font-size: 12px;
+}
+.f-14{
+    font-size: 14px
+}
+.f-16{
+    font-size: 16px
+}
+.f-18{
+    font-size: 18px
+}
+.f-20{
+    font-size: 20px
+}
+.f-24{
+    font-size: 24px
+}
+.f-26{
+    font-size: 26px
+}
+.f-30{
+    font-size: 30px
+}
+.f-32{
+    font-size: 32px
+}
+/*
+    Text Position
+================================================================
+*/
+.t-center{
+    text-align: center
+}
+.t-left{
+    text-align: left
+}
+.t-right{
+    text-align: right
+}
+/*
+    Text Weight
+==================================================================
+*/
+.bold{
+    font-weight: bold
+}
+.bold-300{
+    font-weight: 300;
+}
+.bold-500{
+    font-weight: 500;
+}
+.bold-600{
+    font-weight: 600;
+}
+.bold-800{
+    font-weight: 800;
+}
+/*
+    Margin
+=======================================================
+*/
+.m-0{
+    margin: 0;
+}
+.m-10{
+    margin: 10px
+}
+.m-20{
+    margin: 20px
+}
+.m-t-10{
+    margin-top: 10px
+}
+.m-t-20{
+    margin-top: 20px
+}
+.m-r-5{
+    margin-right: 5px
+}
+.m-r-10{
+	margin-right: 10px
+}
+.m-r-20{
+	margin-right: 20px
+}
+.m-b-10{
+	margin-bottom: 10px
+}
+.m-b-20{
+	margin-bottom: 20px
+}
+.m-l-10{
+	margin-left: 10px
+}
+.m-l-20{
+	margin-left: 20px
+}
+.bc{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+    Padding
+===========================================================
+*/
+.p-10{
+	padding: 10px
+}
+.p-20{
+	padding: 20px
+}
+.p-t-10{
+	padding-top: 10px
+}
+.p-t-20{
+	padding-top: 20px
+}
+.p-r-10{
+	padding-right: 10px
+}
+.p-r-20{
+	padding-right: 20px
+}
+.p-b-10{
+	padding-bottom: 10px
+}
+.p-b-20{
+	padding-bottom: 20px
+}
+.p-l-10{
+	padding-left: 10px
+}
+.p-l-20{
+	padding-left: 20px
+}
+
+/*
+    Border
+===============================================================
+*/
+.border{
+    border: 1px solid #000 !important;
+}
+.no-border{
+    border: none;
+}
+.border-top {
+    border-top: 1px solid #000 !important;
+}
+.border-right{
+    border-right: 1px solid #000 !important;
+}
+.border-bottom {
+    border-bottom: 1px solid #000 !important;
+}
+.border-left {
+    border-left: 1px solid #000 !important;
+}
+.bd-circle{
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.bd-5{
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+/*
+    Float
+===================================================
+*/
+.f-l{
+    float: left;
+}
+.f-r{
+    float: right;
+}
+.f-none{
+    float: none;
+}
+/*
+    ClearFix
+===================================================
+*/
+.clearfix:after{
+    content:'';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix{*zoom:1;}/* IE6 IE7 */
+
+/*
+    disPlay
+=========================================================
+*/
+.none{
+    display: none;
+}
+.dis-inline{
+    display: inline;
+}
+.dis-block{
+    display: block;
+}
+.dis-ib{
+    display: inline-block;
+}
+.dis-table{
+    display: table;
+}
+.dis-cell{
+    display: table-cell;
+}
+/*
+    Width && Vertical
+=========================================================
+*/
+.full{
+    width: 100%;
+}
+.width-half{
+    width: 50%;
+}
+.col-1{
+    width: 8.33%;
+}
+.col-2{
+    width: 16.67%;
+}
+.col-3{
+    width: 25%;
+}
+.col-4{
+    width: 33.33%;
+}
+.col-5{
+    width: 41.66%;
+}
+.col-6{
+    width: 50%;
+}
+.col-7{
+    width: 58.33%;
+}
+.col-8{
+    width: 66.6%;
+}
+.col-9{
+    width: 75%;
+}
+.col-10{
+    width: 83.33%;
+}
+.col-11{
+    width: 91.66%;
+}
+.col-12{
+    width: 100%
+}
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12{
+    float: left;
+    padding:0 5px;
+    box-sizing: border-box;
+}
+.ver-top{
+    vertical-align: top;
+}
+.ver-middle{
+    vertical-align: middle;
+}
+.ver-bottom{
+    vertical-align: bottom;
+}
+.w-200{
+    width:200px;
+}
+
+/*
+    Button
+============================================================
+*/
+.button{
+    display: inline-block;
+    height: 35px;
+    line-height:35px;
+    font-size: 14px;
+    padding: 6px 25px;
+    margin: 0 10px 10px 0;
+}
+.button-primary{
+    background-color: #e0e6eb;
+    color: #616c76;
+}
+.button-round{
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 18px;
+}
+/**/
+.single-line-over{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*
+    Position
+===================================================================
+*/
+.pos-r{
+    position: relative;
+}
+.pos-a{
+    position: absolute;
+}
