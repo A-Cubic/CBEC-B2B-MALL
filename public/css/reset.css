@@ -10,6 +10,7 @@ html,body{
     background: #fff;
     font-size: 14px;
     min-width: 1024px;
+    box-sizing: border-box;
 }
 h1,h2,h3,h4,h5{
     font-weight:normal;

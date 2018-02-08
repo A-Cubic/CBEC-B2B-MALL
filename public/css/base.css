@@ -1,11 +1,15 @@
 .content_w{
-    width:1200px ;
+    width:1440px ;
+    margin: 0 auto;
 }
-.blue{
-    color: #0b60ad;
+.main_color{
+    color:#d82316
 }
-.blank{
-    color: #555;
+.main_bg{
+    background: #d82316;
+}
+.blank_color{
+    color:#555555
 }
 /*
    Font Size

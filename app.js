@@ -13,7 +13,6 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
 // 设置 handlebars 视图引擎
 var handlebars = require('express-handlebars').create({
     defaultLayout:'main',
