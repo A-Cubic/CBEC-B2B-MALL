@@ -16,6 +16,7 @@
   border-top: 5px solid #d82316;
   background: #fff;
   box-sizing: border-box;
+  /*validate 错误提示*/
 }
 #loginForm .title {
   font-size: 20px;
@@ -24,29 +25,26 @@
   font-weight: bolder;
 }
 #loginForm .input_div {
-  width: 300px;
-  height: 40px;
-  line-height: 40px;
-  border: 1px solid #cdcdcd;
   margin-bottom: 22px;
-  background-repeat: no-repeat;
-  background-position: 12px center;
-  background-size: 23px 23px ;
 }
 #loginForm .input_div input[name='username'],
 #loginForm .input_div input[name='password'] {
-  height: 22px;
-  line-height: 22px;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
   vertical-align: middle;
-  margin-left: 47px;
-  padding-left: 14px;
-  border-left: 1px solid #cdcdcd;
+  padding-left: 50px;
   font-size: 13px;
+  box-sizing: border-box;
+  border: 1px solid #cdcdcd;
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  background-size: 23px 23px;
 }
-#loginForm .user {
+#loginForm .user input {
   background-image: url(../imgs/login/icon-user.png);
 }
-#loginForm .password {
+#loginForm .password input {
   background-image: url(../imgs/login/icon-psw.png);
 }
 #loginForm .note {
@@ -72,6 +70,11 @@
   text-align: center;
   display: block;
   border-radius: 5px;
+}
+#loginForm label.error {
+  color: red;
+  margin-left: 62px;
+  line-height: 20px;
 }
 .process {
   text-align: center;

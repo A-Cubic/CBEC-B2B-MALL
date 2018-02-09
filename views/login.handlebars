@@ -93,3 +93,48 @@
     </div>
 </footer>
 <!--footer end-->
+
+{{#section 'jquery'}}
+    <script src="/js/jquery.js"></script>
+    <script src="/plugin/jquery-validation-1.14.0/jquery.validate.min.js"></script>
+    <script src="/plugin/jquery-validation-1.14.0/localization/messages_zh.js"></script>
+    <script>
+        $(function () {
+            var $login = $("#loginForm");
+            $login.validate({
+                rules: {
+                    username: "required",
+                    password: {
+                        required: true,
+                        minlength: 5
+                    }
+                },
+                messages: {
+                    username: "请输入邮箱或手机号码",
+                    password: {
+                        required: "请输入密码",
+                        minlength: "密码长度不能小于 5 个字母"
+                    }
+
+                }
+            });
+
+            $('.login_btn').click(function () {
+                if($login.valid()){
+                    $.ajax({
+                        url:'/login',
+                        type:"post",
+                        data : {
+                            username:$login[0].username.value,
+                            password : $login[0].password.value
+                        },
+                        success:function(){
+                            alert('登录成功')
+                        }
+                    })
+                }
+            })
+        })
+
+    </script>
+{{/section}}
