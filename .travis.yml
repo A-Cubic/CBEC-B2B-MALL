@@ -17,9 +17,9 @@ install:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-    docker build -t $REGISTRY_URL/$REGISTRY_IMAGE .;
-    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" $REGISTRY_URL;
-    docker push $REGISTRY_URL/$REGISTRY_IMAGE;
+    docker build -t "$REGISTRY_URL"/"$REGISTRY_IMAGE" .;
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" "$REGISTRY_URL";
+    docker push "$REGISTRY_URL"/"$REGISTRY_IMAGE";
     fi
 
 script:
