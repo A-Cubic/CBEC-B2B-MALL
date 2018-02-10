@@ -1,4 +1,4 @@
-FROM node
+FROM node:slim
 ENV HTTP_PORT 3000
 COPY . /app
 WORKDIR /app
