@@ -23,4 +23,4 @@ after_success:
     fi
 
 script:
-  - npm start
+  - echo 'Need to test!'
