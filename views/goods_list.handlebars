@@ -1,6 +1,6 @@
 {{#section 'head'}}
     <title>首页</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/goods_list.css">
 {{/section}}
 
 {{>topbar}}
@@ -65,46 +65,7 @@
         <a href="javascript:;">人气<i class="icon_sort"></i></a>
         <a href="javascript:;">价格<i class="icon_sort"></i></a>
     </div>
-    <div class="goods_list">
-        <ul class="clearfix">
-            <li>
-                <a href="javascript:;">
-                    <img src="/imgs/goods.jpg" class="goods_pic">
-                    <p class="desc">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
-                    <div class="price">￥899</div>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <img src="/imgs/goods.jpg" class="goods_pic">
-                    <p class="desc">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
-                    <div class="price">￥899</div>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <img src="/imgs/goods.jpg" class="goods_pic">
-                    <p class="desc">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
-                    <div class="price">￥899</div>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <img src="/imgs/goods.jpg" class="goods_pic">
-                    <p class="desc">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
-                    <div class="price">￥899</div>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <img src="/imgs/goods.jpg" class="goods_pic">
-                    <p class="desc">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
-                    <div class="price">￥899</div>
-                </a>
-            </li>
-
-        </ul>
-    </div>
+    {{>goods_list}}
     <div class="pagenation f-r">
         <a href="javascript:;" class="last">上一页</a>
         <span class="page_num">

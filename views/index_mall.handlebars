@@ -1,0 +1,52 @@
+{{#section 'head'}}
+    <title></title>
+    <link rel="stylesheet" href="/plugin/swiper-2.7.6/idangerous.swiper.css">
+    <link rel="stylesheet" href="/css/index_mall.css">
+{{/section}}
+
+{{>topbar}}
+{{>header_search}}
+{{>nav}}
+
+<!--swiper start-->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="/imgs/banner.png" alt=""/></div>
+        <div class="swiper-slide"> <img src="/imgs/banner1.png" alt=""/></div>
+        <div class="swiper-slide"> <img src="/imgs/banner2.png" alt=""/></div>
+    </div>
+    <div class="pagination"></div>
+</div>
+<!--swiper end-->
+<!--优选品牌 start-->
+<div class="content_w">
+    <div class="preference ">
+        <h2>
+            优选品牌
+            <span class="text f-r">
+                <a href="javascript:;">111</a>
+                <a href="javascript:;">222</a>
+                <a href="javascript:;">333</a>
+                <a href="javascript:;" class="more f-r">更多</a>
+            </span>
+        </h2>
+    </div>
+    {{>goods_list}}
+    <div style="width:100%;height:76px" ></div>
+</div>
+<!--优选品牌 end-->
+{{#section 'jquery'}}
+    <script src="/js/public.js"></script>
+    <script src="/plugin/swiper-2.7.6/idangerous.swiper.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var mySwiper = $('.swiper-container').swiper({
+                autoplay:5000,
+                pagination : '.pagination'
+            });
+        });
+        $('.like').click(function () {
+            $(this).hasClass('unlike') ? $(this).removeClass('unlike').addClass('liked')  : $(this).addClass('unlike').removeClass('liked');
+        })
+    </script>
+{{/section}}
