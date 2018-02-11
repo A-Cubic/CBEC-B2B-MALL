@@ -4,8 +4,11 @@ module.exports = function(app){
 	});
 	app.get('/mall',function(req,res){
 		res.render('index_mall')
-	})
+	});
 	app.get('/goodsList',function(req,res){
 		res.render('goods_list')
-	})
+	});
+	app.get('/goodsDetails/:id',function(req,res){
+		res.render('goods_detail')
+	});
 }

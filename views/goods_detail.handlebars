@@ -1,0 +1,82 @@
+{{#section 'head'}}
+    <title>商品详情</title>
+    <link rel="stylesheet" href="/css/goods_details.css">
+{{/section}}
+
+{{>topbar}}
+
+<!--header start-->
+{{>header_search}}
+<!--header end-->
+
+<!--nav start-->
+{{>nav}}
+<!--nav end-->
+
+<!--商品详情 start-->
+<div class="content_w clearfix">
+    <div class="imgPic f-l clearfix">
+        <div class="pic f-l"><img src="/imgs/pic_1.jpg"></div>
+        <div class="list f-l">
+            <a href="javascript:;" class="arrow arrow_top"></a>
+            <div class="list_wrapper">
+                <ul style="transform: translateY(0px);">
+                    <li><a href="javascript:;"><img src="/imgs/pic_1.jpg"></a></li>
+                    <li><a href="javascript:;"><img src="/imgs/pic_2.jpg"></a></li>
+                    <li><a href="javascript:;"><img src="/imgs/pic_3.jpg"></a></li>
+                    <li><a href="javascript:;"><img src="/imgs/pic_4.jpg"></a></li>
+                    <li><a href="javascript:;"><img src="/imgs/pic_4.jpg"></a></li>
+                    <li><a href="javascript:;"><img src="/imgs/pic_4.jpg"></a></li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="arrow arrow_bot"></a>
+        </div>
+    </div>
+    <div class="desc f-l">
+        <h2>测试测试测试测试测试测试测试测试</h2>
+        <p>原产国/地：韩国</p>
+        <p>货产国/地：韩国</p>
+        <p>型号：dasfafas</p>
+        <p>毛重：0.1kg</p>
+        <p>商品规格：dasdada</p>
+        <p>储存方式/注意事项：防水</p>
+    </div>
+    <a href="javascript:;" class="backToList">返回我的商品列表</a>
+</div>
+<!--商品详情 end-->
+
+{{#section 'jquery'}}
+    <script src="/js/public.js"></script>
+    <script type="text/javascript">
+        ele.imgPicList.on('click','li a', function () {
+            var src = $(this).find('img').attr('src');
+            ele.imgPic.find('img').attr('src',src);
+        });
+
+        var num = 0;
+        $('.arrow').click(function () {
+            $ul = $('.list_wrapper ul');
+            var liLen = ele.imgPicList.find('li').length;
+            var tans = $ul.css('transform').split(',');
+            var tanslateY = parseInt(tans[tans.length-1]);
+            console.log(tanslateY);
+
+            /*if($(this).hasClass('arrow_top')){
+                if( liLen - (tanslateY/110)  >= 4){
+                    return false
+                }else {
+                    num+=110;
+                    ele.imgPicList.find('ul').css('transform','translateY('+num+'px)');
+                }
+            }else {
+                if( liLen + (tanslateY/110)  <= 4){
+                    return false
+                }else {
+                    num-=110;
+                    ele.imgPicList.find('ul').css('transform','translateY('+num+'px)');
+                }
+            }*/
+
+        })
+    </script>
+{{/section}}

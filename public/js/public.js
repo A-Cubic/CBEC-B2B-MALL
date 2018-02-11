@@ -6,7 +6,9 @@ var ele = (function () {
         goodsLev2 : $('.cate_level_2'),
         goodsLev3 : $('.cate_level_3'),
         goodsLev1Li : $('.cate_level_1 li'),
-        goodsLev2Div : $('.cate_level_2>div')
+        goodsLev2Div : $('.cate_level_2>div'),
+        imgPic : $('.imgPic .pic'),
+        imgPicList : $('.imgPic .list')
     }
 })();
 
@@ -17,11 +19,9 @@ $(function () {
         ele.goods_panel.stop().fadeOut()
     });
 
-    ele.goodsLev1Li.hover(function(){
+    ele.goodsLev1Li.mouseenter(function(){
         var index = $(this).index();
         ele.goodsLev2Div.eq(index).removeClass('none').siblings('div').addClass('none')
-    },function(){
-
     })
 
 });

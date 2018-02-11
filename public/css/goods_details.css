@@ -1,0 +1,96 @@
+.content_w {
+  position: relative;
+}
+.imgPic {
+  position: relative;
+  width: 43.75%;
+  height: 500px;
+  margin: 10px 90px 40px 0;
+}
+.imgPic img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.imgPic .pic {
+  width: 79.36%;
+  height: 100%;
+  line-height: 500px;
+  border: 1px solid #eee;
+  margin-right: 4.76%;
+  box-sizing: border-box;
+  text-align: center;
+}
+.imgPic .list {
+  position: relative;
+  width: 15.87%;
+  height: 100%;
+  line-height: 500px;
+}
+.imgPic .list .list_wrapper {
+  height: 85%;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+}
+.imgPic .list ul {
+  height: 1000%;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -ms-transition: all .5s;
+  -o-transition: all .5s ;
+  transition: all .5s;
+}
+.imgPic .list a {
+  display: block;
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+  border: 1px solid #eee;
+  margin: 5px 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+.imgPic .list .arrow {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.imgPic .list .arrow_top {
+  background-image: url("../imgs/arrow_top.png");
+  top: 0;
+}
+.imgPic .list .arrow_bot {
+  background-image: url("../imgs/arrow_bot.png");
+  bottom: 0;
+}
+.desc {
+  width: 49.86%;
+  line-height: 1;
+}
+.desc h2 {
+  font-size: 24px;
+  color: #000;
+  margin: 30px 0;
+}
+.desc p {
+  font-size: 16px;
+  line-height: 30px;
+  color: #3c3c3c;
+}
+.backToList {
+  position: absolute;
+  right: 0;
+  bottom: 40px;
+  display: block;
+  color: #2b2b2b;
+  width: 280px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border: 1px solid #d82316;
+  font-size: 18px;
+  border-radius: 5px;
+}
