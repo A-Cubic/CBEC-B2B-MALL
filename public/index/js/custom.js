@@ -36,11 +36,15 @@ $(function(){
   }
   initParallax();
 
-  $('.nav li').click(function () {
-      //alert($(this).find('a').attr('href'));
-      window.location.href='/'+$(this).find('a').attr('href')
-  })
-
+  // $('.nav li').click(function () {
+  //     //alert($(this).find('a').attr('href'));
+  //     window.location.href='/'+$(this).find('a').attr('href')
+  // })
+    //直接scrollTop定位锚点---解决最新Chrome锚点失效问题
+    $(".smoothScroll").click(function(){
+        var a = $(this).attr("href");
+        $("html,body").animate({scrollTop: $(a).offset().top}, 1000);
+    });
 
 });
 
