@@ -36,5 +36,11 @@ $(function(){
   }
   initParallax();
 
+  $('.nav li').click(function () {
+      //alert($(this).find('a').attr('href'));
+      window.location.href='/'+$(this).find('a').attr('href')
+  })
+
+
 });
 
