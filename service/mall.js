@@ -1,9 +1,11 @@
 const fetch = require('node-fetch');
+const URL = "http://api.llwell.net/web";
 
 module.exports = {
 	catalog : function(req,res,callback){
-		fetch('http://api.llwell.net/web/catalog', {
-			method: 'POST'
+		// http://192.168.1.101:8080/index_mall.json
+		fetch(' http://api.llwell.net/web/catalog ', {
+			// method: 'POST'
 		}) .then(res => res.json())
 			.then(json => {
 			if(json.state == '0'){
@@ -31,9 +33,12 @@ module.exports = {
 			}
 		});
 	},
-	goodsList : function(req,res,callback){
+	goodsList : function(req,res,body,callback){
+		console.log(body);
 		fetch('http://api.llwell.net/web/GoodsList', {
-			method: 'POST'
+			method: 'POST',
+			body :JSON.stringify(body),
+			headers: { 'Content-Type': 'application/json' }
 		}) .then(res => res.json())
 			.then(json => {
 				callback (json);

@@ -4,34 +4,81 @@
     "level1" : [
       {
         "id" : 0,
-        "value" : "美容护肤"
-      },
-      {
-        "id" : 1,
-        "value" : "1"
-      }
-    ],
-    "level2":[
-      {
-        "catelog":[
+        "value" : "美容护肤",
+        "level2":[
           {
-            "id" : 0,
-            "value" : "0",
-            "childCate":[
+            "catelog":[
+              {
+                "id" : "0-1",
+                "value" : "0",
+                "childCate":[
+                  {
+                    "id" : "0-1-1",
+                    "value" : "0"
+                  }
+                ]
+              },
+              {
+                "id" : "0-2",
+                "value" : "0",
+                "childCate":[
+                  {
+                    "id" : "0-1-2",
+                    "value" : "0"
+                  }
+                ]
+              }
+            ],
+            "brands":[
               {
                 "id" : 0,
                 "value" : "0"
               }
             ]
           }
-        ],
-        "brands":[
+        ]
+      },
+      {
+        "id" : 1,
+        "value" : "222",
+        "level2":[
           {
-            "id" : 0,
-            "value" : "0"
+            "catelog":[
+              {
+                "id" : "1-1",
+                "value" : "222",
+                "childCate":[
+                  {
+                    "id" : "1-1-1",
+                    "value" : "222"
+                  }
+                ]
+              },
+              {
+                "id" : "1-2",
+                "value" : "222",
+                "childCate":[
+                  {
+                    "id" : "1-2-1",
+                    "value" : "222"
+                  }
+                ]
+              }
+            ],
+            "brands":[
+              {
+                "id" : 0,
+                "value" : "222"
+              },
+              {
+                "id" : 0,
+                "value" : "222"
+              }
+            ]
           }
         ]
       }
     ]
+
   }
 }

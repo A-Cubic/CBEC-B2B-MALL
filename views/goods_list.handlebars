@@ -18,7 +18,7 @@
 <div class="filter content_w">
     <div class="condition">
         <span>提货：</span>
-        <div>
+        <div class="sendType">
             {{#each this.sendtype}}
             <a href="javascript:;" data-id={{typeid}}>{{typename}}</a>
             {{/each}}
@@ -26,7 +26,7 @@
     </div>
     <div class="condition">
         <span>国家：</span>
-        <div>
+        <div class="country">
              {{#each this.country}}
             <a href="javascript:;" data-id={{countryid}}>{{countryname}}</a>
             {{/each}}
@@ -34,7 +34,7 @@
     </div>
     <div class="condition">
         <span>分类：</span>
-        <div>
+        <div class="catelog">
             <select>
                 <option>1</option>
                 <option>2</option>
@@ -92,6 +92,21 @@
 <!--results end-->
 {{#section 'jquery'}}
     <script src="/js/public.js"></script>
+    <script type="text/javascript">
+        //filter
+        $('.condition>div a').click(function(){
+            var key = $(this).parent('div').attr('class');
+            var value = $(this).attr('data-id');
+            $.ajax({
+                type : 'post',
+                url : '/goodsList',
+                data : {key:key,value:value},
+                success: function(data){
+                    console.log(data);
+                }
+            })
+        })
+    </script>
 {{/section}}
 
 
