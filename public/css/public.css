@@ -107,7 +107,7 @@
   box-sizing: border-box;
 }
 .header .mine .mine_access a.order {
-  background: url("../imgs/icon_orders.png") no-repeat 15px center;
+  background: url("../imgs/icon_orders.png") no-repeat 10px center;
   padding-left: 20px;
 }
 .header .mine .mine_access a.on {

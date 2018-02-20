@@ -13,7 +13,7 @@
 <div class="swiper-container">
     <div class="swiper-wrapper">
         {{#each this.banner}}
-         <div class="swiper-slide"><a href={{advurl}}><img src={{imgurl}} alt=""/></a></div>
+         <div class="swiper-slide"><a href={{advurl}} target="_blank"><img src={{imgurl}} alt=""/></a></div>
         {{/each}}
         <!-- <div class="swiper-slide"><img src="/imgs/banner.png" alt=""/></div>
         <div class="swiper-slide"> <img src="/imgs/banner1.png" alt=""/></div>
@@ -29,9 +29,9 @@
             优选品牌
             <span class="text f-r">
                 {{#each this.brands}}
-                <a href="{{advurl}}">{{advname}}</a>
+                <a href="{{advurl}}" target="_blank">{{advname}}</a>
                 {{/each}}
-                <a href="javascript:;" class="more f-r">更多</a>
+                <a href="/goodsList" class="more f-r" target="_blank">更多</a>
             </span>
         </h2>
     </div>

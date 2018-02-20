@@ -6,7 +6,7 @@
             <div class="goods_panel none">
                 <ul class="cate_level_1">
                     {{#each level1}}
-                        <li><a href="javascrpt:;">{{this.value}}</a></li>
+                        <li><a href="/goodsList" target="_blank">{{this.value}}</a></li>
                     {{/each}}
                 </ul>
                 <div class="cate_level_2">
@@ -19,7 +19,7 @@
                                         <div>
                                             {{this.value}}>
                                             {{#each this.childCate}}
-                                                <a href="javascript:;">{{this.value}}</a>
+                                                <a href="/goodsList" target="_blank">{{this.value}}</a>
                                             {{/each}}
                                         </div>
                                     {{/each}}
@@ -30,7 +30,7 @@
                                 <div class="f-l">
                                     {{#each this.brands}}
                                         <div>
-                                            <a href="javascript:;">{{this.value}}</a>
+                                            <a href="/goodsList" target="_blank">{{this.value}}</a>
                                         </div>
                                     {{/each}}
                                 </div>
@@ -42,9 +42,10 @@
         </div>
         <div class="role_nav f-l">
             <ul>
-                <li><a href="#">商品上传</a> </li>
-                <li><a href="#">我的供货单</a> </li>
-                <li><a href="#">我的信息</a> </li>
+                <li><a href="/goodsList" target="_blank">香港自提</a> </li>
+                <li><a href="/goodsList" target="_blank">海外自提</a> </li>
+                <li><a href="/goodsList" target="_blank">保税备货</a> </li>
+                <li><a href="/goodsList" target="_blank">一般贸易</a> </li>
             </ul>
         </div>
     </div>
