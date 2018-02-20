@@ -39,5 +39,21 @@ module.exports = {
 				callback (json);
 		});
 	},
+	goodsDetails : function(req,res,goodsId,callback){
+		var body = {
+			goodsId : goodsId
+		};
+		fetch('http://api.llwell.net/web/Goods', {
+			method: 'POST',
+			body :JSON.stringify(body),
+			headers: { 'Content-Type': 'application/json' }
+		}) .then(res => res.json())
+			.then(json => {
+				console.log(json.results.goods[0]);
+				if(json.state == '0'){
+					callback (json.results.goods[0]);
+				}
+			});
+	}
 
 }

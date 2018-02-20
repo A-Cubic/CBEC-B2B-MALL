@@ -12,7 +12,8 @@
 <!--nav start-->
 {{>nav}}
 <!--nav end-->
-
+{{#with results}}
+<input type="hidden" name="goodsId" value="{{id}}">
 <!--商品详情 start-->
 <div class="content_w">
     <div class="clearfix">
@@ -22,36 +23,33 @@
             <a href="javascript:;" class="arrow arrow_top"></a>
             <div class="list_wrapper">
                 <ul style="transform: translateY(0px);">
-                    <li><a href="javascript:;"><img src="/imgs/pic_1.jpg"></a></li>
-                    <li><a href="javascript:;"><img src="/imgs/pic_2.jpg"></a></li>
-                    <li><a href="javascript:;"><img src="/imgs/pic_3.jpg"></a></li>
-                    <li><a href="javascript:;"><img src="/imgs/pic_4.jpg"></a></li>
-                    <li><a href="javascript:;"><img src="/imgs/pic_4.jpg"></a></li>
-                    <li><a href="javascript:;"><img src="/imgs/pic_4.jpg"></a></li>
+                    {{#each thumbs}}
+                        <li><a href="javascript:;"><img src={{this}}></a></li>
+                    {{/each}}
                 </ul>
             </div>
             <a href="javascript:;" class="arrow arrow_bot"></a>
         </div>
     </div>
     <div class="desc f-l">
-        <h2>测试测试测试测试测试测试测试测试</h2>
-        <p>原产国/地：韩国</p>
-        <p>货产国/地：韩国</p>
-        <p>型号：dasfafas</p>
-        <p>毛重：0.1kg</p>
-        <p>商品规格：dasdada</p>
-        <p>储存方式/注意事项：防水</p>
+        <h2>{{#if goodsname}}{{goodsname}}{{else}} / {{/if}}</h2>
+        <p>原产国/地：{{#if country}}{{country}}{{else}} / {{/if}}</p>
+        <p>货产国/地：{{source}}</p>
+        <p>型号：{{model}}</p>
+        <p>毛重：{{#if GW}}{{GW}}{{else}} / {{/if}}kg</p>
+        <p>商品规格：{{#if LWH}}{{LWH}}{{else}} / {{/if}}</p>
+        <p>储存方式/注意事项：{{#if needAttention}}{{needAttention}}{{else}} / {{/if}}</p>
     </div>
     <!--<a href="javascript:;" class="backToList">返回我的商品列表</a>-->
     </div>
     <div class="goods_details_pics">
         <a href="javascript:;" class="pur_btn">购买/采购</a>
-        <img src="http://ecc-product.oss-cn-beijing.aliyuncs.com/goodsuploads/201707070941382750.jpg"/>
-        <img src="http://ecc-product.oss-cn-beijing.aliyuncs.com/goodsuploads/201707070941382750.jpg"/>
-        <img src="http://ecc-product.oss-cn-beijing.aliyuncs.com/goodsuploads/201707070941382750.jpg"/>
+        {{#each contents}}
+            <img src="{{this}}"/>
+        {{/each}}
     </div>
 </div>
-
+{{/with}}
 <!--商品详情 end-->
 
 {{#section 'jquery'}}

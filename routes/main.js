@@ -55,6 +55,13 @@ module.exports = function(app){
 		});
 	});
 	app.get('/goodsDetails/:id',function(req,res){
-		res.render('goods_detail')
+		var goodsId = req.params.id;
+		mall.goodsDetails(req,res,goodsId,function(results){
+			if (results) {
+				res.render('goods_detail',{results:results})
+			}else{
+				res.redirect('/mall');
+			}
+		})
 	});
 }
