@@ -43,6 +43,16 @@ $(function(){
     //直接scrollTop定位锚点---解决最新Chrome锚点失效问题
     $(".smoothScroll").click(function(){
         var a = $(this).attr("href");
+        var b = $(a).offset().top;
+        if(a==="#work"){
+            b=b-50;
+        }else if(a==="#team"){
+            b=b+200;
+        }else if(a==="#portfolio"){
+            b=b+180;
+        }else if(a==="#price"){
+            b=b+260;
+        }
         var navH = $('.navbar').height();
         $("html,body").animate({scrollTop: ($(a).offset().top)}, 1000);
     });
