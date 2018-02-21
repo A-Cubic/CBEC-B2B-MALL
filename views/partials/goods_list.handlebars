@@ -1,52 +1,17 @@
 <div class="goods_list">
     <ul class="clearfix">
+        {{#each this}}
         <li>
-            <a href="javascript:;">
-                <img src="/imgs/goods.jpg" class="goods_pic">
-                <p class="desc">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
+            <a href="/goodsDetails/{{id}}" target="_blank">
+                <img src="{{slt}}" class="goods_pic">
+                <p class="desc">{{goodsname}}</p>
                 <div class="price">
-                    <span class="f-l">￥899</span>
+                    <span class="f-l">￥{{price}}</span>
                     <div class="like f-l"></div>
-                    <div class="addCart f-r">加入采购单</div>
+                    <!-- <div class="addCart f-r">加入采购单</div> -->
                 </div>
-
             </a>
         </li>
-        <li>
-            <a href="javascript:;">
-                <img src="/imgs/goods.jpg" class="goods_pic">
-                <p class="desc">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
-                <div class="price">
-                    <span class="f-l">￥899-2000</span>
-                    <div class="like unlike f-l"></div>
-                    <div class="addCart f-r">加入采购单</div>
-                </div>
-
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                <img src="/imgs/goods.jpg" class="goods_pic">
-                <p class="desc">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
-                <div class="price">
-                    <span class="f-l">￥899</span>
-                    <div class="like unlike f-l"></div>
-                    <div class="addCart f-r">加入采购单</div>
-                </div>
-
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                <img src="/imgs/goods.jpg" class="goods_pic">
-                <p class="desc">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
-                <div class="price">
-                    <span class="f-l">￥899</span>
-                    <div class="like unlike f-l"></div>
-                    <div class="addCart f-r">加入采购单</div>
-                </div>
-
-            </a>
-        </li>
+        {{/each}}
     </ul>
 </div>

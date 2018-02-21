@@ -21,6 +21,9 @@ var handlebars = require('express-handlebars').create({
             if(!this._sections) this._sections = {};
             this._sections[name] = options.fn(this);
             return null;
+        },
+        ifShow : function (index) {
+            return index==0 ? '': 'none'
         }
     }
 });

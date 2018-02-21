@@ -1,67 +1,55 @@
+{{#with results.catelog}}
 <div class="nav">
     <div class="content_w clearfix">
         <div class="goods_catelog f-l">
             <a href="javascript:;" class="catelog_tit">我的商品</a>
             <div class="goods_panel none">
                 <ul class="cate_level_1">
-                    <li><a href="javascrpt:;">美容护肤</a></li>
-                    <li><a href="javascrpt:;">2</a></li>
-                    <li><a href="javascrpt:;">3</a></li>
-                    <li><a href="javascrpt:;">4</a></li>
-                    <li><a href="javascrpt:;">5</a></li>
-                    <li><a href="javascrpt:;">6</a></li>
-                    <li><a href="javascrpt:;">777</a></li>
-                    <li><a href="javascrpt:;">888</a></li>
-                    <li><a href="javascrpt:;">999</a></li>
+                    {{#each level1}}
+                        <li><a href="/goodsList/?catelog1={{this.id}}" target="_blank">{{this.value}}</a></li>
+                    {{/each}}
                 </ul>
                 <div class="cate_level_2">
-                    <div>
-                        <div class="cate_level_3 usage clearfix">
-                            <span class="cate_level_3_tit f-l">分类 ></span>
-                            <div class="f-l">
-                                <div>
-                                    面部护理>
-                                    <a href="javascript:;">面霜</a>
-                                    <a href="javascript:;">洗面奶</a>
-                                    <a href="javascript:;">化妆水</a>
+                    {{#each level1}}
+                        <div class='{{ifShow @index}}'> 
+                        {{#each this.level2}}
+                            <div class="cate_level_3 usage clearfix">
+                                <span class="cate_level_3_tit f-l">分类 ></span>
+                                <div class="f-l">
+                                    {{#each this.catelog}}
+                                        <div>
+                                            <a href="/goodsList/?catelog1={{../../this.id}}&catelog2={{this.id}}" target="_blank">{{this.value}}></a>
+                                            {{#each this.childCate}}
+                                                <a href="/goodsList?catelog1={{../../../this.id}}&catelog2={{../this.id}}&catelog3={{this.id}}" target="_blank">{{this.value}}</a>
+                                            {{/each}}
+                                        </div>
+                                    {{/each}}
                                 </div>
-                                <div>
-                                    面部护理>
-                                    <a href="javascript:;">面霜</a>
-                                    <a href="javascript:;">洗面奶</a>
-                                    <a href="javascript:;">化妆水</a>
+                            </div>
+                            <div class="cate_level_3 brands clearfix">
+                                <span class="cate_level_3_tit f-l">品牌 ></span>
+                                <div class="f-l">
+                                    {{#each this.brands}}
+                                        <div>
+                                            <a href="/goodsList?brands={{this.id}}" target="_blank">{{this.value}}</a>
+                                        </div>
+                                    {{/each}}
                                 </div>
                             </div>
                         </div>
-                        <div class="cate_level_3 brands clearfix">
-                            <span class="cate_level_3_tit f-l">品牌 ></span>
-                            <div class="f-l">
-                                <div>
-                                    <a href="javascript:;">面霜</a>
-                                </div>
-                                <div>
-                                    <a href="javascript:;">化妆水</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="none">2</div>
-                    <div class="none">3</div>
-                    <div class="none">4</div>
-                    <div class="none">5</div>
-                    <div class="none">6</div>
-                    <div class="none">7</div>
-                    <div class="none">8</div>
-                    <div class="none">9</div>
+                    {{/each}}
+                    {{/each}}
                 </div>
             </div>
         </div>
         <div class="role_nav f-l">
             <ul>
-                <li><a href="#">商品上传</a> </li>
-                <li><a href="#">我的供货单</a> </li>
-                <li><a href="#">我的信息</a> </li>
+                <li><a href="/goodsList?sendType=1" target="_blank">香港自提</a> </li>
+                <li><a href="/goodsList?sendType=2" target="_blank">海外自提</a> </li>
+                <li><a href="/goodsList?sendType=3" target="_blank">保税备货</a> </li>
+                <li><a href="/goodsList?sendType=4" target="_blank">一般贸易</a> </li>
             </ul>
         </div>
     </div>
 </div>
+{{/with}}

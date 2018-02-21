@@ -1,5 +1,5 @@
 {{#section 'head'}}
-    <title>首页</title>
+    <title>商品列表</title>
     <link rel="stylesheet" href="/css/goods_list.css">
 {{/section}}
 
@@ -13,28 +13,28 @@
 {{>nav}}
 <!--nav end-->
 
+{{#with results.condition}}
 <!--filter start-->
 <div class="filter content_w">
     <div class="condition">
         <span>提货：</span>
-        <div>
-            <a href="javascript:;">香港自提</a>
-            <a href="javascript:;">海外自提</a>
-            <a href="javascript:;">保税备货</a>
-            <a href="javascript:;">一般贸易</a>
+        <div class="sendType">
+            {{#each this.sendtype}}
+            <a href="javascript:;" data-id={{typeid}}>{{typename}}</a>
+            {{/each}}
         </div>
     </div>
     <div class="condition">
         <span>国家：</span>
-        <div>
-            <a href="javascript:;">日本</a>
-            <a href="javascript:;">韩国</a>
-            <a href="javascript:;">乌克兰</a>
+        <div class="country">
+             {{#each this.country}}
+            <a href="javascript:;" data-id={{countryid}}>{{countryname}}</a>
+            {{/each}}
         </div>
     </div>
     <div class="condition">
         <span>分类：</span>
-        <div>
+        <div class="catelog">
             <select>
                 <option>1</option>
                 <option>2</option>
@@ -55,17 +55,20 @@
     </div>
 </div>
 <!--filter end-->
-
+{{/with}}
 <!--results start-->
+{{#with results.goodsList}}
 <div class="goods_results content_w">
-    <div class="num">为您找到<span>80</span>件与“保健”相关的商品</div>
+    <div class="num">为您找到<span>{{total}}</span>件与“保健”相关的商品</div>
     <div class="sort">
         <a href="javascript:;">综合排序</a>
         <a href="javascript:;">销量<i class="icon_sort"></i></a>
         <a href="javascript:;">人气<i class="icon_sort"></i></a>
         <a href="javascript:;">价格<i class="icon_sort"></i></a>
     </div>
-    {{>goods_list}}
+    {{#with list}}
+        {{>goods_list}}
+    {{/with}}
     <div class="pagenation f-r">
         <a href="javascript:;" class="last">上一页</a>
         <span class="page_num">
@@ -81,13 +84,29 @@
             <a href="javascript:;">10</a>
         </span>
         <a href="javascript:;" class="next">下一页</a>
-        共10款商品，第2/10页，到第<input type="text" class="page_text"/> 页
+        共{{total}}款商品，第{{pageSize}}/{{pageNum}}页，到第<input type="text" class="page_text"/> 页
         <a href="javascript:;" class="go_page_btn">确定</a>
     </div>
 </div>
+{{/with}}
 <!--results end-->
 {{#section 'jquery'}}
     <script src="/js/public.js"></script>
+    <script type="text/javascript">
+        //filter
+        $('.condition>div a').click(function(){
+            var key = $(this).parent('div').attr('class');
+            var value = $(this).attr('data-id');
+            $.ajax({
+                type : 'post',
+                url : '/goodsList',
+                data : {key:key,value:value},
+                success: function(data){
+                    console.log(data);
+                }
+            })
+        })
+    </script>
 {{/section}}
 
 
