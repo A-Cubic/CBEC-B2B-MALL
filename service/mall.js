@@ -4,8 +4,8 @@ const URL = "http://api.llwell.net/web";
 module.exports = {
 	catalog : function(req,res,callback){
 		// http://192.168.1.101:8080/index_mall.json
-		fetch(' http://api.llwell.net/web/catalog ', {
-			// method: 'POST'
+		fetch(URL+'/catalog ', {
+			method: 'POST'
 		}) .then(res => res.json())
 			.then(json => {
 			if(json.state == '0'){
@@ -14,7 +14,7 @@ module.exports = {
 		});
 	},
 	mallIndex : function(req,res,callback){
-		fetch('http://api.llwell.net/web/adver', {
+		fetch(URL+'/adver', {
 			method: 'POST'
 		}) .then(res => res.json())
 			.then(json => {
@@ -24,7 +24,7 @@ module.exports = {
 		});
 	},
 	condition : function(req,res,callback){
-		fetch('http://api.llwell.net/web/Screen', {
+		fetch(URL+'/Screen', {
 			method: 'POST'
 		}) .then(res => res.json())
 			.then(json => {
@@ -34,8 +34,8 @@ module.exports = {
 		});
 	},
 	goodsList : function(req,res,body,callback){
-		console.log(body);
-		fetch('http://api.llwell.net/web/GoodsList', {
+		//console.log(body);
+		fetch(URL+'/GoodsList', {
 			method: 'POST',
 			body :JSON.stringify(body),
 			headers: { 'Content-Type': 'application/json' }
@@ -48,7 +48,7 @@ module.exports = {
 		var body = {
 			goodsId : goodsId
 		};
-		fetch('http://api.llwell.net/web/Goods', {
+		fetch(URL+'/Goods', {
 			method: 'POST',
 			body :JSON.stringify(body),
 			headers: { 'Content-Type': 'application/json' }

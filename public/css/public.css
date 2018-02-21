@@ -237,6 +237,9 @@
 .filter .condition .no-border {
   border: none;
 }
+.filter .condition .active {
+  color: #d82316;
+}
 .filter .condition span {
   display: inline-block;
   float: left;

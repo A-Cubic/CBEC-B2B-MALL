@@ -11,6 +11,23 @@ var ele = (function () {
         imgPicList : $('.imgPic .list')
     }
 })();
+var module = (function(){
+     var goodsListBody = {
+            sendType : '',
+            country : '',
+            catelog1 :  '',
+            catelog2 : '',
+            catelog3 : '',
+            brands: '',
+            search : '',
+            sort : '',
+            pageNumber : '',
+            pageSize : ''
+            };
+    return{
+        goodsListBody : goodsListBody
+    }
+})();
 
 $(function () {
     ele.goods_catelog.hover(function () {

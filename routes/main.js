@@ -40,13 +40,14 @@ module.exports = function(app){
 			catelog3 : req.query.catelog3 ? req.query.catelog3 : '',//商品分类3
 			brands:  req.query.brands ? req.query.brands : '',//品牌
 			search : req.query.search ? req.query.search : '',//搜索内容
-			sort :  req.query.sort ? req.query.sort : '',//排序方式
-			pageNumber : req.query.pageNumber ? req.query.pageNumber : '',//多少页
-			pageSize : req.query.pageSize ? req.query.pageSize : ''//页面显示多少个商品
+			sort :  req.query.sort ? req.query.sort : '0',//排序方式
+			//pageNumber : req.query.pageNumber ? req.query.pageNumber : '',//多少页
+			//pageSize : req.query.pageSize ? req.query.pageSize : ''//页面显示多少个商品
 		}
 		var json = {
-			condition : {},
-			goodsList : {}
+			condition : {other : {}},
+			goodsList : {},
+			body : body
 		}
 		async.series([
 		    function(callback) {
@@ -58,36 +59,21 @@ module.exports = function(app){
 		    	 mall.goodsList(req,res,body,function(results){
 	    		 callback(null,results);
 	    		});
+		    },
+		    function(callback) {
+		    	 mall.catalog(req,res,function(results){
+	    		 callback(null,results);
+	    		});
 		    }
 		],
 		function(err, results) {
 			json.condition = results[0];
 			json.goodsList = results[1];
+			json.condition.other = results[2];
+			//console.log(json);
 		    res.render('goods_list',{results:json});
 		});
 	});
-	app.post('/goodsList',function(req,res){
-		var body = {
-			sendType : '',
-			country : '',
-			catelog1 :  '',
-			catelog2 : '',
-			catelog3 : '',
-			brands: '',
-			search : '',
-			sort : '',
-			pageNumber : '',
-			pageSize : ''
-		}
-		for(var key in body){
-			if (key == req.body.key) {
-				body[key] = req.body.value
-			}
-		}
-		mall.goodsList(req,res,body,function(results){
-		  res.json(results);
-		});
-	})
 	app.get('/goodsDetails/:id',function(req,res){
 		var goodsId = req.params.id;
 		mall.goodsDetails(req,res,goodsId,function(results){
@@ -98,4 +84,17 @@ module.exports = function(app){
 			}
 		})
 	});
-}
+	app.get('/catelog', function (req,res) {
+		mall.catalog(req,res,function(results){
+			res.json(results);
+		});
+	})
+	app.post('/goodsList',function(req,res){
+		console.log(req.body);
+		mall.goodsList(req,res,req.body,function(results){
+			res.json(results);
+		});
+	});
+
+
+};

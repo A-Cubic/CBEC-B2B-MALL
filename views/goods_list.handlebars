@@ -13,6 +13,18 @@
 {{>nav}}
 <!--nav end-->
 
+{{#with results.body}}
+<!--input hidden-->
+<input type="hidden" value="{{sendType}}" id="sendType">
+<input type="hidden" value="{{brands}}" id="brands">
+<input type="hidden" value="{{catelog1}}" id="catelog1">
+<input type="hidden" value="{{catelog2}}" id="catelog2">
+<input type="hidden" value="{{catelog3}}" id="catelog3">
+<input type="hidden" value="{{sort}}" id="sort">
+<input type="hidden" value="{{../results.goodsList/pageNum}}" id="pageNumber">
+<input type="hidden" value="{{../results.goodsList/pageSize}}" id="pageSize">
+<!--input hidden-->
+{{/with}}
 {{#with results.condition}}
 <!--filter start-->
 <div class="filter content_w">
@@ -20,7 +32,7 @@
         <span>提货：</span>
         <div class="sendType">
             {{#each this.sendtype}}
-            <a href="javascript:;" data-id={{typeid}}>{{typename}}</a>
+                <a href="javascript:;" class="{{#ifActive ../../results.body/sendType}}typeid{{/ifActive}}" data-id={{typeid}}>{{typename}}</a>
             {{/each}}
         </div>
     </div>
@@ -35,22 +47,30 @@
     <div class="condition">
         <span>分类：</span>
         <div class="catelog">
-            <select>
-                <option>1</option>
-                <option>2</option>
+            <select id="level1">
+                 <option>请选择</option>
+                {{#each this.other.level1}}
+                <option data-id={{this.id}}>{{this.value}}</option>
+                {{/each}}
             </select>
-            <select>
-                <option>11</option>
-                <option>22</option>
+            <select id="level2">
+                <option>请选择</option>
+            </select> 
+             <select id="level3">
+                 <option>请选择</option>
             </select>
         </div>
     </div>
     <div class="condition no-border">
         <span>品牌：</span>
         <div class="brands">
-            <a href="javascript:;">测试</a>
-            <a href="javascript:;">测试</a>
-            <a href="javascript:;">测试</a>
+            {{#each this.other.level1}}
+                {{#each this.level2}}
+                    {{#each this.brands}}
+                    <a href="javascript:;">{{this.value}}</a>
+                    {{/each}}
+                {{/each}}
+            {{/each}}
         </div>
     </div>
 </div>
@@ -61,10 +81,10 @@
 <div class="goods_results content_w">
     <div class="num">为您找到<span>{{total}}</span>件与“保健”相关的商品</div>
     <div class="sort">
-        <a href="javascript:;">综合排序</a>
-        <a href="javascript:;">销量<i class="icon_sort"></i></a>
-        <a href="javascript:;">人气<i class="icon_sort"></i></a>
-        <a href="javascript:;">价格<i class="icon_sort"></i></a>
+        <a href="javascript:;" data-type="0" class="active">综合排序</a>
+        <a href="javascript:;" data-type="1">销量<i class="icon_sort"></i></a>
+        <a href="javascript:;" data-type="2">人气<i class="icon_sort"></i></a>
+        <a href="javascript:;" data-type="3">价格<i class="icon_sort"></i></a>
     </div>
     {{#with list}}
         {{>goods_list}}
@@ -72,8 +92,8 @@
     <div class="pagenation f-r">
         <a href="javascript:;" class="last">上一页</a>
         <span class="page_num">
-            <a href="javascript:;">1</a>
-            <a href="javascript:;" class="on">2</a>
+            <a href="javascript:;" class="active">1</a>
+            <a href="javascript:;">2</a>
             <a href="javascript:;">3</a>
             <a href="javascript:;">4</a>
             <a href="javascript:;">5</a>
@@ -84,7 +104,7 @@
             <a href="javascript:;">10</a>
         </span>
         <a href="javascript:;" class="next">下一页</a>
-        共{{total}}款商品，第{{pageSize}}/{{pageNum}}页，到第<input type="text" class="page_text"/> 页
+        共{{total}}款商品，第{{pageNum}}/{{pageSize}}页，到第<input type="text" class="page_text"/> 页
         <a href="javascript:;" class="go_page_btn">确定</a>
     </div>
 </div>
@@ -93,19 +113,213 @@
 {{#section 'jquery'}}
     <script src="/js/public.js"></script>
     <script type="text/javascript">
+        //init goodsListBody
+        module.goodsListBody.sendType = $('#sendType').val();
+        module.goodsListBody.brands = $('#brands').val();
+        module.goodsListBody.catelog1 = $('#catelog1').val();
+        module.goodsListBody.catelog2 = $('#catelog2').val();
+        module.goodsListBody.catelog3 = $('#catelog3').val();
+        module.goodsListBody.sort = $('#sort').val();
+        module.goodsListBody.pageNumber = $('#pageNumber').val();
+        module.goodsListBody.pageSize = $('#pageSize').val();
+        console.log(module.goodsListBody);
+
         //filter
         $('.condition>div a').click(function(){
+            $(this).addClass('active').siblings('a').removeClass('active');
             var key = $(this).parent('div').attr('class');
             var value = $(this).attr('data-id');
-            $.ajax({
+
+            module.goodsListBody[key] = value;
+            postFilter(module.goodsListBody);
+        });
+
+        var catelog = [];
+        $('#level1').change(function () {
+            var str = '<option>请选择</option>';
+            var id = parseInt($(this).find('option:selected').attr('data-id'));
+            if(catelog.length==0){
+                getCatelog(function () {
+                    loadCatelog(2,id)
+                });
+            }else {
+                loadCatelog(2,id)
+            }
+           /* function loadCatelog(){
+                catelog.level1.forEach(function (value,index) {
+                    if(value.id == id){
+                        value.level2[0]['catelog'].forEach(function (val,i) {
+                            str += '<option>'+ val.value +'</option>'
+                        })
+                    }
+                });
+                $('#level2').html(str);
+            }*/
+        });
+
+        $('#level2').change(function () {
+            var id1 = parseInt($('#level1').find('option:selected').attr('data-id'));
+            var id2 = parseInt($(this).find('option:selected').attr('data-id'));
+            if(catelog.length==0){
+                getCatelog(function () {
+                    loadCatelog(3,id1,id2)
+                });
+            }else {
+                loadCatelog(3,id1,id2);
+            }
+        });
+
+        $('.catelog select').change(function () {
+            var key = '';
+            var id = parseInt($(this).find('option:selected').attr('data-id'));
+            switch ($(this).attr('id')){
+                case 'level1' :
+                    key = 'catelog1';
+                    break;
+                case 'level2' :
+                    key = 'catelog2';
+                    break;
+                case 'level3' :
+                    key = 'catelog3';
+                    break;
+            }
+            module.goodsListBody[key] = id;
+            postFilter(module.goodsListBody);
+        });
+
+        //sort
+        $('.sort a').click(function () {
+            $(this).addClass('active').siblings('a').removeClass('active');
+            var sort = $(this).attr('data-type');
+            module.goodsListBody.sort = sort;
+            postFilter(module.goodsListBody);
+        });
+        //pagenation
+        $('.pagenation').on('click','a',function(){
+            var currentPage = (module.goodsListBody.pageNumber)*1;
+            var index;
+            var $page_num = $('.page_num a');
+            var baseNum = 0;
+            var str = '';
+
+            $page_num.each(function () {
+               if($(this).hasClass('active')){
+                   index = $(this).index()
+               }
+            });
+
+            if($(this).parent('span').hasClass('page_num')){
+
+                $(this).addClass('active').siblings('a').removeClass('active');
+                module.goodsListBody.pageNumber = ($(this).html())*1
+
+            }else if($(this).hasClass('last')){
+                if(1){ //判断是否有上一页
+                    if(((module.goodsListBody.pageNumber)-1) % 10 ==0){ // 判断10的整数倍 修改页码
+                        index = 9;
+                        baseNum = (((module.goodsListBody.pageNumber)-1)/ 10 ) - 1;
+                        for(var i=0; i < 10 ;i++){
+                            str += '<a href="javascript:;">'+ ((baseNum*10)+i+1) +'</a>'
+                        }
+                        $('.page_num').html(str);
+                    }else {
+                        index--;
+                    }
+
+                    module.goodsListBody.pageNumber--;
+                    $('.page_num a').eq(index).addClass('active').siblings('a').removeClass('active');
+
+                }else {
+                    alert('当前为第一页');
+                    return
+                }
+            }else if($(this).hasClass('next')){
+                if(1){ //判断是否有下一页
+                    if(module.goodsListBody.pageNumber % 10 ==0){ // 判断10的整数倍 修改页码
+                        index = 0;
+                        baseNum = (module.goodsListBody.pageNumber / 10 );
+                        for(var i=0; i < 10 ;i++){
+                            str += '<a href="javascript:;">'+ ((baseNum*10)+i+1) +'</a>'
+                        }
+                        $('.page_num').html(str);
+                    }else {
+                        index++;
+                    }
+
+                    module.goodsListBody.pageNumber++;
+                    $('.page_num a').eq(index).addClass('active').siblings('a').removeClass('active');
+
+                }else {
+                    alert('当前为最后一页');
+                    return
+                }
+            }
+            postFilter(module.goodsListBody);
+
+        });
+        $('.pagenation .go_page_btn').click(function () {
+            module.goodsListBody.pageNumber = ($('.page_text').val())*1;
+            var a =  Math.ceil(module.goodsListBody.pageNumber / 10)-1;
+            var b =  module.goodsListBody.pageNumber % 10;
+            var str = '';
+            for(var i=0; i < 10 ;i++){
+                str += '<a href="javascript:;">'+ ((a*10)+i+1) +'</a>'
+            }
+            $('.page_num').html(str);
+            $('.page_num a').eq(b-1).addClass('active').siblings('a').removeClass('active');
+        });
+        function postFilter(json){
+             $.ajax({
                 type : 'post',
                 url : '/goodsList',
-                data : {key:key,value:value},
+                data : json,
                 success: function(data){
                     console.log(data);
                 }
             })
-        })
+        }
+        function getCatelog(callback){
+            $.ajax({
+                url : '/catelog',
+                success: function(data){
+                    console.log(data);
+                    catelog = data;
+                    callback();
+                }
+            })
+        }
+        function loadCatelog(level,id1,id2){
+            var target='';
+            var str = '<option>请选择</option>';
+
+            if(level == 2){
+                target = '#level2'
+            }else if(level == 3){
+                target = '#level3'
+            }
+
+            catelog.level1.forEach(function (value,index) {
+                if(level ==2){
+                    if(value.id == id1){
+                        value.level2[0]['catelog'].forEach(function (val,i) {
+                            str += '<option data-id="'+ val.id +'">'+ val.value +'</option>'
+                        })
+                    }
+                }else if(level ==3){
+                    if(value.id == id1){
+                        value.level2[0]['catelog'].forEach(function (val,i) {
+                            if(val.id == id2){
+                                val.childCate.forEach(function (v,j) {
+                                    str += '<option data-id="'+ v.id+'">'+ v.value +'</option>'
+                                })
+                            }
+                        })
+                    }
+
+                }
+            });
+            $(target).html(str);
+        }
     </script>
 {{/section}}
 

@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 
 var mainRouter = require('./routes/main');
 var index = require('./routes/index');
-var users = require('./routes/users');
 
 var app = express();
 
@@ -24,6 +23,12 @@ var handlebars = require('express-handlebars').create({
         },
         ifShow : function (index) {
             return index==0 ? '': 'none'
+        },
+        ifActive : function (value,options) {
+            //console.log(value);
+            //console.log(options.fn(this));
+            var key = options.fn(this);
+            return this[key] == value ? 'active' : '';
         }
     }
 });
@@ -40,7 +45,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
 mainRouter(app);
 
 // catch 404 and forward to error handler
