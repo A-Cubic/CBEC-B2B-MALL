@@ -64,13 +64,13 @@
     <div class="condition no-border">
         <span>品牌：</span>
         <div class="brands">
-            {{#each this.other.level1}}
-                {{#each this.level2}}
-                    {{#each this.brands}}
-                    <a href="javascript:;">{{this.value}}</a>
-                    {{/each}}
-                {{/each}}
-            {{/each}}
+            <!--{{!#each this.other.level1}}
+                {{!#each this.level2}}
+                    {{!#each this.brands}}
+                    <a href="javascript:;">{{!this.value}}</a>
+                    {{!/each}}
+                {{!/each}}
+            {{!/each}}-->
         </div>
     </div>
 </div>
@@ -125,12 +125,13 @@
         console.log(module.goodsListBody);
 
         //filter
-        $('.condition>div a').click(function(){
+        $('.condition>div').on('click','a',function(){
             $(this).addClass('active').siblings('a').removeClass('active');
             var key = $(this).parent('div').attr('class');
             var value = $(this).attr('data-id');
 
             module.goodsListBody[key] = value;
+            module.goodsListBody['pageNumber'] = 1;
             postFilter(module.goodsListBody);
         });
 
@@ -138,23 +139,17 @@
         $('#level1').change(function () {
             var str = '<option>请选择</option>';
             var id = parseInt($(this).find('option:selected').attr('data-id'));
+
             if(catelog.length==0){
                 getCatelog(function () {
-                    loadCatelog(2,id)
+                    loadCatelog(2,id);
+                    loadBrands(id)
                 });
             }else {
-                loadCatelog(2,id)
+                loadCatelog(2,id);
+                loadBrands(id);
             }
-           /* function loadCatelog(){
-                catelog.level1.forEach(function (value,index) {
-                    if(value.id == id){
-                        value.level2[0]['catelog'].forEach(function (val,i) {
-                            str += '<option>'+ val.value +'</option>'
-                        })
-                    }
-                });
-                $('#level2').html(str);
-            }*/
+
         });
 
         $('#level2').change(function () {
@@ -184,6 +179,7 @@
                     break;
             }
             module.goodsListBody[key] = id;
+            module.goodsListBody['pageNumber'] = 1;
             postFilter(module.goodsListBody);
         });
 
@@ -192,6 +188,7 @@
             $(this).addClass('active').siblings('a').removeClass('active');
             var sort = $(this).attr('data-type');
             module.goodsListBody.sort = sort;
+            module.goodsListBody['pageNumber'] = 1;
             postFilter(module.goodsListBody);
         });
         //pagenation
@@ -268,13 +265,36 @@
             $('.page_num').html(str);
             $('.page_num a').eq(b-1).addClass('active').siblings('a').removeClass('active');
         });
+
+        //search
+        $('.search_btn').click(function () {
+            module.goodsListBody.search = $(this).siblings('input').val();
+            module.goodsListBody['pageNumber'] = 1;
+            postFilter(module.goodsListBody);
+        });
         function postFilter(json){
+            var str = '';
+            console.log(json);
              $.ajax({
                 type : 'post',
                 url : '/goodsList',
                 data : json,
                 success: function(data){
-                    console.log(data);
+//                    console.log(data);
+                    for(var i = 0;i < data.list.length;i++){
+                        str+='<li>'+
+                                '<a href="/goodsDetails/'+data.list[i]['id']+'" target="_blank">'+
+                                '<img src="'+ data.list[i]['slt'] +'" class="goods_pic">'+
+                                '<p class="desc">'+data.list[i]['goodsname']+'</p>'+
+                                '<div class="price">'+
+                                '<span class="f-l">￥'+data.list[i]['price']+'</span>'+
+                                '<div class="like f-l"></div>'+
+                                '<!-- <div class="addCart f-r">加入采购单</div> -->'+
+                                '</div>'+
+                                '</a>'+
+                                '</li>';
+                    }
+                    $('.goods_list .clearfix').html(str);
                 }
             })
         }
@@ -290,15 +310,35 @@
         }
         function loadCatelog(level,id1,id2){
             var target='';
+            var target2 = '';
             var str = '<option>请选择</option>';
 
             if(level == 2){
-                target = '#level2'
+                target = '#level2';
+                target2 = '#level3';
+                $(target2).html(str);
             }else if(level == 3){
                 target = '#level3'
             }
 
             catelog.level1.forEach(function (value,index) {
+                    if(value.id == id1){
+                        value.level2[0]['catelog'].forEach(function (val,i) {
+                            if(level ==2){
+                                str += '<option data-id="'+ val.id +'">'+ val.value +'</option>';
+                            }else if(level ==3){
+                                if(val.id == id2){
+                                    val.childCate.forEach(function (v,j) {
+                                        str += '<option data-id="'+ v.id+'">'+ v.value +'</option>'
+                                    })
+                                }
+                            }
+                        })
+                    }
+
+            });
+
+/*            catelog.level1.forEach(function (value,index) {
                 if(level ==2){
                     if(value.id == id1){
                         value.level2[0]['catelog'].forEach(function (val,i) {
@@ -317,8 +357,22 @@
                     }
 
                 }
-            });
+            });*/
             $(target).html(str);
+        }
+        function loadBrands(id){
+            var str = '';
+            if(id){
+                catelog.level1.forEach(function (value,index) {
+                    if(value.id == id){
+                        value.level2[0]['brands'].forEach(function (val,i) {
+                            str+='<a href="javascript:;" data-id="'+ val.id +'">'+ val.value +'</a>'
+                        })
+                    }
+                });
+            }
+
+            $('.condition .brands').html(str)
         }
     </script>
 {{/section}}
