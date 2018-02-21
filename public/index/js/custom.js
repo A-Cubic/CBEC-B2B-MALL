@@ -54,7 +54,7 @@ $(function(){
             b=b+260;
         }
         var navH = $('.navbar').height();
-        $("html,body").animate({scrollTop: ($(a).offset().top)}, 1000);
+        $("html,body").animate({scrollTop: b}, 1000);
     });
 
 });
