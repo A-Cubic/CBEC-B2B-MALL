@@ -80,6 +80,17 @@
   line-height: 30px;
   color: #3c3c3c;
 }
+.desc .pur_btn {
+  display: block;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #d82316;
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 10px;
+}
 .backToList {
   position: absolute;
   right: 0;
@@ -94,20 +105,7 @@
   font-size: 18px;
   border-radius: 5px;
 }
-.goods_details_pics {
-  position: relative;
-}
 .goods_details_pics img {
   display: block;
   width: 100%;
-}
-.goods_details_pics .pur_btn {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  display: block;
-  padding: 10px 20px;
-  background: #d82316;
-  color: #fff;
-  border-radius: 5px;
 }
