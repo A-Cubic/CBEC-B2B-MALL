@@ -118,7 +118,7 @@ transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
 }
 /* home section */
 #home {
-	background: url('../images/home-bg.jpg') 50% 0 repeat-y fixed;
+	background: url('http://ecc-product.oss-cn-beijing.aliyuncs.com/gateway/home-bg.jpg') 50% 0 repeat-y fixed;
 	color: #ffffff;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -239,7 +239,7 @@ transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
 }
 /* team section */
 #team {
-	background: #202020 url('../images/team-bg.jpg') 50% 0 repeat-y fixed;
+	background: #202020 url('http://ecc-product.oss-cn-beijing.aliyuncs.com/gateway/team-bg.jpg') 50% 0 repeat-y fixed;
 	color: #ffffff;
 	padding-top: 100px;
 	padding-bottom: 100px;
@@ -348,7 +348,7 @@ transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
 }
 /* contact section */
 #contact {
-	background: #f6f6f6 url('../images/contact-bg.jpg') 50% 0 repeat-y fixed;
+	background: #f6f6f6 url('http://ecc-product.oss-cn-beijing.aliyuncs.com/gateway/contact-bg.jpg') 50% 0 repeat-y fixed;
 	color: #ffffff;
 	padding-top: 100px;
 	padding-bottom: 80px;
