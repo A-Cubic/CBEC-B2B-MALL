@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const URL = "http://api.llwell.net/web";
+// const URL = "http://172.16.10.100:9999/web";
 
 module.exports = {
 	catalog : function(req,res,callback){
@@ -34,7 +35,6 @@ module.exports = {
 		});
 	},
 	goodsList : function(req,res,body,callback){
-		//console.log(body);
 		fetch(URL+'/GoodsList', {
 			method: 'POST',
 			body :JSON.stringify(body),

@@ -41,8 +41,10 @@ module.exports = function(app){
 			brands:  req.query.brands ? req.query.brands : '',//品牌
 			search : req.query.search ? req.query.search : '',//搜索内容
 			sort :  req.query.sort ? req.query.sort : '0',//排序方式
-			//pageNumber : req.query.pageNumber ? req.query.pageNumber : '',//多少页
-			//pageSize : req.query.pageSize ? req.query.pageSize : ''//页面显示多少个商品
+			pageNumber : 1,
+			pageSize : 10,
+			// pageNumber : req.query.pageNumber ? req.query.pageNumber : '',//多少页
+			// pageSize : req.query.pageSize ? req.query.pageSize : ''//页面显示多少个商品
 		}
 		var json = {
 			condition : {other : {}},
@@ -70,7 +72,7 @@ module.exports = function(app){
 			json.condition = results[0];
 			json.goodsList = results[1];
 			json.condition.other = results[2];
-			//console.log(json);
+			console.log(json);
 		    res.render('goods_list',{results:json});
 		});
 	});
@@ -90,7 +92,6 @@ module.exports = function(app){
 		});
 	})
 	app.post('/goodsList',function(req,res){
-		console.log(req.body);
 		mall.goodsList(req,res,req.body,function(results){
 			res.json(results);
 		});
