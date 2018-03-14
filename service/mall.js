@@ -54,7 +54,7 @@ module.exports = {
 			headers: { 'Content-Type': 'application/json' }
 		}) .then(res => res.json())
 			.then(json => {
-				console.log(json.results.goods[0]);
+				// console.log(json.results.goods[0]);
 				if(json.state == '0'){
 					callback (json.results.goods[0]);
 				}

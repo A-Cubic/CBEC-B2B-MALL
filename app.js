@@ -25,10 +25,13 @@ var handlebars = require('express-handlebars').create({
             return index==0 ? '': 'none'
         },
         ifActive : function (value,options) {
-            //console.log(value);
-            //console.log(options.fn(this));
             var key = options.fn(this);
             return this[key] == value ? 'active' : '';
+        },
+        getOne : function(index){
+          console.log(index);
+          console.log(this);
+          return this[index]
         }
     }
 });

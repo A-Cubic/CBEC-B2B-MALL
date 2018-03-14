@@ -24,8 +24,12 @@ var module = (function(){
             pageNumber : '',
             pageSize : ''
             };
+    var hasNextPage;
+    var hasPreviousPage;
     return{
-        goodsListBody : goodsListBody
+        goodsListBody : goodsListBody,
+        hasNextPage : hasNextPage,
+        hasPreviousPage : hasPreviousPage
     }
 })();
 

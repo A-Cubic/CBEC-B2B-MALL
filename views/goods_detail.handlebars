@@ -18,7 +18,9 @@
 <div class="content_w">
     <div class="clearfix">
     <div class="imgPic f-l clearfix">
-        <div class="pic f-l"><img src="/imgs/pic_1.jpg"></div>
+        {{#with thumbs}}
+            <div class="pic f-l"><img src="{{#getOne 0}}{{/getOne}}"></div>
+        {{/with}}
         <div class="list f-l">
             <a href="javascript:;" class="arrow arrow_top"></a>
             <div class="list_wrapper">

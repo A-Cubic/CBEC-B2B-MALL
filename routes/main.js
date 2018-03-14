@@ -72,7 +72,7 @@ module.exports = function(app){
 			json.condition = results[0];
 			json.goodsList = results[1];
 			json.condition.other = results[2];
-			console.log(json);
+			console.log(json)
 		    res.render('goods_list',{results:json});
 		});
 	});
