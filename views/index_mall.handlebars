@@ -55,5 +55,8 @@
         $('.like').click(function () {
             $(this).hasClass('unlike') ? $(this).removeClass('unlike').addClass('liked')  : $(this).addClass('unlike').removeClass('liked');
         })
+        $('.search_btn').click(function () {
+            location.href='/goodsList?search=' + $(this).siblings('input').val();
+        });
     </script>
 {{/section}}

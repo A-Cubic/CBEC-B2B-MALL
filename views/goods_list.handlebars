@@ -21,6 +21,7 @@
 <input type="hidden" value="{{catelog2}}" id="catelog2">
 <input type="hidden" value="{{catelog3}}" id="catelog3">
 <input type="hidden" value="{{sort}}" id="sort">
+<input type="hidden" value="{{search}}" id="search">
 <input type="hidden" value="{{../results.goodsList/pageNum}}" id="pageNumber">
 <input type="hidden" value="{{../results.goodsList/pageSize}}" id="pageSize">
 <input type="hidden" value="{{../results.goodsList/hasNextPage}}" id="hasNextPage">
@@ -109,7 +110,7 @@
             <a href="javascript:;">10</a> -->
         </span>
         <a href="javascript:;" class="next">下一页</a>
-        共<i class="total">{{total}}</i>款商品，第{{pageNum}}/{{pageSize}}页，到第<input type="text" class="page_text"/> 页
+        共<i class="total">{{total}}</i>款商品，共{{size}}页，到第<input type="text" class="page_text"/> 页
         <a href="javascript:;" class="go_page_btn">确定</a>
     </div>
 </div>
@@ -304,7 +305,8 @@
                                 '</a>'+
                                 '</li>';
                     }
-                    renderPage(data.pages,data.pageNum);
+                    console.log(data);
+                    renderPage(data.pages,data.pageNum, data.size);
                     $('.goods_list .clearfix').html(str);
                     $('.total').html(data.total);
 
@@ -390,13 +392,29 @@
 
             $('.condition .brands').html(str)
         }
-        function renderPage(pages,pageNumber){
+        function renderPage(pages,pageNumber,size){
             var  str = '';
-            for( var i = 0; i < pages; i++){
-                str += '<a href="javascript:;">'+(i+1)+'</a>'
+            if(size===undefined){
+                for( var i = 0; i < 10; i++){
+                    str += '<a href="javascript:;">'+(i+1)+'</a>'
+                }
+                $('.page_num').html(str);
+                $('.page_num a:eq('+ 0 +')').addClass('active');
+            }else{
+                var a =  Math.ceil(module.goodsListBody.pageNumber / 10)-1;
+                // var b =  module.goodsListBody.pageNumber % 10;
+                var c = size - a*10;
+                var d = c > 10 ? pages : c;
+                // console.log(size);
+                // console.log(c,'   ',d);
+                var str = '';
+                for( var i = 0; i < d; i++){
+                    str += '<a href="javascript:;">'+((a*10)+i+1)+'</a>'
+                }
+                $('.page_num').html(str);
+                $('.page_num a:eq('+ (pageNumber - a*10 -1) +')').addClass('active');
             }
-            $('.page_num').html(str);
-            $('.page_num a:eq('+ (pageNumber-1) +')').addClass('active');
+
         }
     </script>
 {{/section}}
