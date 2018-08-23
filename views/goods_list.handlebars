@@ -27,6 +27,7 @@
 <input type="hidden" value="{{../results.goodsList/hasNextPage}}" id="hasNextPage">
 <input type="hidden" value="{{../results.goodsList/hasPreviousPage}}" id="hasPreviousPage">
 <input type="hidden" value="{{../results.goodsList/pages}}" id="pages">
+<input type="hidden" value="{{../results.goodsList/size}}" id="size">
 <!--input hidden-->
 {{/with}}
 {{#with results.condition}}
@@ -113,7 +114,7 @@
             <a href="javascript:;">10</a> -->
         </span>
         <a href="javascript:;" class="next">下一页</a>
-        共<i class="total">{{total}}</i>款商品，共{{size}}页，到第<input type="text" class="page_text"/> 页
+        共<i class="total">{{total}}</i>款商品，<span id="size_span"></span>，到第<input type="text" class="page_text"/> 页
         <a href="javascript:;" class="go_page_btn">确定</a>
     </div>
 </div>
@@ -135,7 +136,7 @@
         module.hasPreviousPage = $('#hasPreviousPage').val();
 
         
-        renderPage($('#pages').val()*1,1,module.goodsListBody.pageSize);
+        renderPage($('#pages').val()*1,1,$('#size').val());
 
         //filter
         $('.condition>div').on('click','a',function(){
@@ -414,6 +415,7 @@
                 for( var i = 0; i < d; i++){
                     str += '<a href="javascript:;">'+((a*10)+i+1)+'</a>'
                 }
+                $('#size_span').html('共' + size + '页');
                 $('.page_num').html(str);
                 $('.page_num a:eq('+ (pageNumber - a*10 -1) +')').addClass('active');
             }
