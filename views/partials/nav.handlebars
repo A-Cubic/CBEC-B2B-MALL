@@ -6,7 +6,7 @@
             <div class="goods_panel none">
                 <ul class="cate_level_1">
                     {{#each level1}}
-                        <li><a href="/goodsList/?catelog1={{this.id}}" target="_blank">{{this.value}}</a></li>
+                        <li><a href="/goodsList/?catelog1={{this.value}}" target="_blank">{{this.value}}</a></li>
                     {{/each}}
                 </ul>
                 <div class="cate_level_2">
@@ -18,9 +18,9 @@
                                 <div class="f-l">
                                     {{#each this.catelog}}
                                         <div>
-                                            <a href="/goodsList/?catelog1={{../../this.id}}&catelog2={{this.id}}" target="_blank">{{this.value}}></a>
+                                            <a href="/goodsList/?catelog1={{../../this.value}}&catelog2={{this.value}}" target="_blank">{{this.value}}></a>
                                             {{#each this.childCate}}
-                                                <a href="/goodsList?catelog1={{../../../this.id}}&catelog2={{../this.id}}&catelog3={{this.id}}" target="_blank">{{this.value}}</a>
+                                                <a href="/goodsList?catelog1={{../../../this.value}}&catelog2={{../this.value}}&catelog3={{this.value}}" target="_blank">{{this.value}}</a>
                                             {{/each}}
                                         </div>
                                     {{/each}}
@@ -31,7 +31,7 @@
                                 <div class="f-l">
                                     {{#each this.brands}}
                                         <div>
-                                            <a href="/goodsList?brands={{this.id}}" target="_blank">{{this.value}}</a>
+                                            <a href="/goodsList?brands={{this.value}}" target="_blank">{{this.value}}</a>
                                         </div>
                                     {{/each}}
                                 </div>
