@@ -62,9 +62,9 @@
             <select id="level2">
                 <option>请选择</option>
             </select> 
-             <select id="level3">
-                 <option>请选择</option>
-            </select>
+             <!--<select id="level3">-->
+                 <!--<option>请选择</option>-->
+            <!--</select>-->
         </div>
     </div>
     <div class="condition no-border">
@@ -77,6 +77,9 @@
                     {{!/each}}
                 {{!/each}}
             {{!/each}}-->
+            {{#each this.brands}}
+                <a href="javascript:;" data-id="{{advname}}">{{advname}}</a>
+            {{/each}}
         </div>
     </div>
 </div>
@@ -132,7 +135,7 @@
         module.hasPreviousPage = $('#hasPreviousPage').val();
 
         
-        renderPage($('#pages').val()*1,1);
+        renderPage($('#pages').val()*1,1,module.goodsListBody.pageSize);
 
         //filter
         $('.condition>div').on('click','a',function(){
@@ -142,7 +145,7 @@
 
             module.goodsListBody[key] = value;
             module.goodsListBody['pageNumber'] = 1;
-            console.log(module.goodsListBody);
+            //console.log(module.goodsListBody);
             postFilter(module.goodsListBody);
         });
 
@@ -285,7 +288,7 @@
         });
         function postFilter(json){
             var str = '';
-            console.log(json);
+            //console.log(json);
              $.ajax({
                 type : 'post',
                 url : '/goodsList',
@@ -305,7 +308,7 @@
                                 '</a>'+
                                 '</li>';
                     }
-                    console.log(data);
+                    //console.log(data);
                     renderPage(data.pages,data.pageNum, data.size);
                     $('.goods_list .clearfix').html(str);
                     $('.total').html(data.total);
@@ -384,7 +387,7 @@
                 catelog.level1.forEach(function (value,index) {
                     if(value.id == id){
                         value.level2[0]['brands'].forEach(function (val,i) {
-                            str+='<a href="javascript:;" data-id="'+ val.id +'">'+ val.value +'</a>'
+                            str+='<a href="javascript:;" data-id="'+ val.value +'">'+ val.value +'</a>'
                         })
                     }
                 });

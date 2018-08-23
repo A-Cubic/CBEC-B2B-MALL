@@ -42,7 +42,7 @@ module.exports = function(app){
 			search : req.query.search ? req.query.search : '',//搜索内容
 			sort :  req.query.sort ? req.query.sort : '0',//排序方式
 			pageNumber : 1,
-			pageSize : 10,
+			pageSize : 40,
 			// pageNumber : req.query.pageNumber ? req.query.pageNumber : '',//多少页
 			// pageSize : req.query.pageSize ? req.query.pageSize : ''//页面显示多少个商品
 		}
@@ -72,7 +72,7 @@ module.exports = function(app){
 			json.condition = results[0];
 			json.goodsList = results[1];
 			json.condition.other = results[2];
-			console.log(json)
+			//console.log(json)
 		    res.render('goods_list',{results:json});
 		});
 	});
