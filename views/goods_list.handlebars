@@ -174,7 +174,9 @@
         $('#level1').change(function () {
             var str = '<option>请选择</option>';
             var id = parseInt($(this).find('option:selected').attr('data-id'));
-
+            module.goodsListBody['catelog1'] = id;
+            module.goodsListBody['catelog2'] = '';
+            module.goodsListBody.brands = '';
             if(catelog.length==0){
                 getCatelog(function () {
                     loadCatelog(2,id);
@@ -197,6 +199,10 @@
             }else {
                 loadCatelog(3,id1,id2);
             }
+            module.goodsListBody['catelog1'] = id1;
+            module.goodsListBody['catelog2'] = id2;
+            module.goodsListBody['pageNumber'] = 1;
+            postFilter(module.goodsListBody);
         });
 
         $('.catelog select').change(function () {
@@ -426,7 +432,7 @@
                     }
                 });
             }
-
+            module.goodsListBody.brands = '';
             $('.condition .brands').html(str)
         }
         function renderPage(pages,pageNumber,size){
