@@ -48,3 +48,14 @@
   font-size: 12px;
   display: inline-block;
 }
+.goods_results .pagenation .page_text1,
+.goods_results .pagenation .go_page_btn1 {
+  width: 55px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  background: #f3f3f3;
+  vertical-align: middle;
+  font-size: 12px;
+  display: inline-block;
+}

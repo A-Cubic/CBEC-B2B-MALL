@@ -105,7 +105,7 @@
     </span>
     <a href="#" class="next">下一页</a>
     共<i class="total">{{total}}</i>款商品，<span class="size_span"></span>，到第<input type="text" class="page_text"/> 页
-    <a href="javascript:;" class="go_page_btn">确定</a>
+    <a href="#" class="go_page_btn">确定</a>
     </div>
     <div class="num">为您找到<span class="total">{{total}}</span>件<!-- 与“保健” -->相关的商品</div>
 
@@ -121,7 +121,7 @@
     {{/with}}
     <div class="pagenation f-r">
         <a href="#" class="last">上一页</a>
-        <span class="page_num page_num2">
+        <span class="page_num">
             <!-- <a href="javascript:;" class="active">1</a>
             <a href="javascript:;">2</a>
             <a href="javascript:;">3</a>
@@ -134,8 +134,8 @@
             <a href="javascript:;">10</a> -->
         </span>
         <a href="#" class="next">下一页</a>
-        共<i class="total">{{total}}</i>款商品，<span class="size_span"></span>，到第<input type="text" class="page_text"/> 页
-        <a href="javascript:;" class="go_page_btn">确定</a>
+        共<i class="total">{{total}}</i>款商品，<span class="size_span"></span>，到第<input type="text" class="page_text1"/> 页
+        <a href="#" class="go_page_btn1">确定</a>
     </div>
 </div>
 {{/with}}
@@ -299,6 +299,19 @@
             }
             $('.page_num').html(str);
             $('.page_num a').eq(b-1).addClass('active').siblings('a').removeClass('active');
+            $('.page_num a').eq(b+9).addClass('active').siblings('a').removeClass('active');
+        });
+        $('.pagenation .go_page_btn1').click(function () {
+            module.goodsListBody.pageNumber = ($('.page_text1').val())*1;
+            var a =  Math.ceil(module.goodsListBody.pageNumber / 10)-1;
+            var b =  module.goodsListBody.pageNumber % 10;
+            var str = '';
+            for(var i=0; i < 10 ;i++){
+                str += '<a href="javascript:;">'+ ((a*10)+i+1) +'</a>'
+            }
+            $('.page_num').html(str);
+            $('.page_num a').eq(b-1).addClass('active').siblings('a').removeClass('active');
+            $('.page_num a').eq(b+9).addClass('active').siblings('a').removeClass('active');
         });
 
         //search
