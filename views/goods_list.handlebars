@@ -89,19 +89,39 @@
 <!--results start-->
 {{#with results.goodsList}}
 <div class="goods_results content_w">
+    <div class="pagenation f-r" style="margin: 0 10px 0 0">
+    <a href="#" class="last">上一页</a>
+    <span class="page_num">
+    <!-- <a href="javascript:;" class="active">1</a>
+    <a href="javascript:;">2</a>
+    <a href="javascript:;">3</a>
+    <a href="javascript:;">4</a>
+    <a href="javascript:;">5</a>
+    <a href="javascript:;">6</a>
+    <a href="javascript:;">7</a>
+    <a href="javascript:;">8</a>
+    <a href="javascript:;">9</a>
+    <a href="javascript:;">10</a> -->
+    </span>
+    <a href="#" class="next">下一页</a>
+    共<i class="total">{{total}}</i>款商品，<span class="size_span"></span>，到第<input type="text" class="page_text"/> 页
+    <a href="javascript:;" class="go_page_btn">确定</a>
+    </div>
     <div class="num">为您找到<span class="total">{{total}}</span>件<!-- 与“保健” -->相关的商品</div>
+
     <div class="sort">
         <a href="javascript:;" data-type="0" class="active">综合排序</a>
         <a href="javascript:;" data-type="1">销量<i class="icon_sort"></i></a>
         <a href="javascript:;" data-type="2">人气<i class="icon_sort"></i></a>
         <a href="javascript:;" data-type="3">价格<i class="icon_sort"></i></a>
+
     </div>
     {{#with list}}
         {{>goods_list}}
     {{/with}}
     <div class="pagenation f-r">
-        <a href="javascript:;" class="last">上一页</a>
-        <span class="page_num">
+        <a href="#" class="last">上一页</a>
+        <span class="page_num page_num2">
             <!-- <a href="javascript:;" class="active">1</a>
             <a href="javascript:;">2</a>
             <a href="javascript:;">3</a>
@@ -113,8 +133,8 @@
             <a href="javascript:;">9</a>
             <a href="javascript:;">10</a> -->
         </span>
-        <a href="javascript:;" class="next">下一页</a>
-        共<i class="total">{{total}}</i>款商品，<span id="size_span"></span>，到第<input type="text" class="page_text"/> 页
+        <a href="#" class="next">下一页</a>
+        共<i class="total">{{total}}</i>款商品，<span class="size_span"></span>，到第<input type="text" class="page_text"/> 页
         <a href="javascript:;" class="go_page_btn">确定</a>
     </div>
 </div>
@@ -227,16 +247,16 @@
 
             }else if($(this).hasClass('last')){
                 if(module.hasPreviousPage){ //判断是否有上一页
-                    if(((module.goodsListBody.pageNumber)-1) % 10 ==0){ // 判断10的整数倍 修改页码
-                        index = 9;
-                        baseNum = (((module.goodsListBody.pageNumber)-1)/ 10 ) - 1;
-                        for(var i=0; i < 10 ;i++){
-                            str += '<a href="javascript:;">'+ ((baseNum*10)+i+1) +'</a>'
-                        }
-                        $('.page_num').html(str);
-                    }else {
-                        index--;
-                    }
+                    // if(((module.goodsListBody.pageNumber)-1) % 10 ==0){ // 判断10的整数倍 修改页码
+                    //     index = 9;
+                    //     baseNum = (((module.goodsListBody.pageNumber)-1)/ 10 ) - 1;
+                    //     for(var i=0; i < 10 ;i++){
+                    //         str += '<a href="javascript:;">'+ ((baseNum*10)+i+1) +'</a>'
+                    //     }
+                    //     $('.page_num').html(str);
+                    // }else {
+                    //     index--;
+                    // }
 
                     module.goodsListBody.pageNumber--;
                     $('.page_num a').eq(index).addClass('active').siblings('a').removeClass('active');
@@ -247,16 +267,16 @@
                 }
             }else if($(this).hasClass('next')){
                 if(module.hasNextPage){ //判断是否有下一页
-                    if(module.goodsListBody.pageNumber % 10 ==0){ // 判断10的整数倍 修改页码
-                        index = 0;
-                        baseNum = (module.goodsListBody.pageNumber / 10 );
-                        for(var i=0; i < 10 ;i++){
-                            str += '<a href="javascript:;">'+ ((baseNum*10)+i+1) +'</a>'
-                        }
-                        $('.page_num').html(str);
-                    }else {
-                        index++;
-                    }
+                    // if(module.goodsListBody.pageNumber % 10 ==0){ // 判断10的整数倍 修改页码
+                    //     index = 0;
+                    //     baseNum = (module.goodsListBody.pageNumber / 10 );
+                    //     for(var i=0; i < 10 ;i++){
+                    //         str += '<a href="javascript:;">'+ ((baseNum*10)+i+1) +'</a>'
+                    //     }
+                    //     $('.page_num').html(str);
+                    // }else {
+                    //     index++;
+                    // }
 
                     module.goodsListBody.pageNumber++;
                     $('.page_num a').eq(index).addClass('active').siblings('a').removeClass('active');
@@ -400,11 +420,12 @@
             var  str = '';
             if(size===undefined){
                 for( var i = 0; i < 10; i++){
-                    str += '<a href="javascript:;">'+(i+1)+'</a>'
+                    str += '<a href="#">'+(i+1)+'</a>'
                 }
                 $('.page_num').html(str);
                 $('.page_num a:eq('+ 0 +')').addClass('active');
             }else{
+                console.log(module.goodsListBody.pageNumber);
                 var a =  Math.ceil(module.goodsListBody.pageNumber / 10)-1;
                 // var b =  module.goodsListBody.pageNumber % 10;
                 var c = size - a*10;
@@ -413,11 +434,12 @@
                 // console.log(c,'   ',d);
                 var str = '';
                 for( var i = 0; i < d; i++){
-                    str += '<a href="javascript:;">'+((a*10)+i+1)+'</a>'
+                    str += '<a href="#">'+((a*10)+i+1)+'</a>'
                 }
-                $('#size_span').html('共' + size + '页');
+                $('.size_span').html('共' + size + '页');
                 $('.page_num').html(str);
                 $('.page_num a:eq('+ (pageNumber - a*10 -1) +')').addClass('active');
+                $('.page_num a:eq('+ (pageNumber - a*10 -1 + 10) +')').addClass('active');
             }
 
         }
