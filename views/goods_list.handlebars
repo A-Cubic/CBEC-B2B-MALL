@@ -55,7 +55,7 @@
         <span>分类：</span>
         <div class="catelog">
             <select id="level1">
-                 <option>请选择</option>
+                 <!--<option>请选择</option>-->
                 {{#each this.other.level1}}
                 <option data-id={{this.id}}>{{this.value}}</option>
                 {{/each}}
@@ -154,9 +154,9 @@
         module.goodsListBody.pageSize = $('#pageSize').val();
         module.hasNextPage = $('#hasNextPage').val();
         module.hasPreviousPage = $('#hasPreviousPage').val();
-
+        console.log(module.goodsListBody);
         
-        renderPage($('#pages').val()*1,1,$('#size').val());
+        renderPage($('#pages').val()*1,1,$('#size').val(),true);
 
         //filter
         $('.condition>div').on('click','a',function(){
@@ -334,7 +334,7 @@
                 url : '/goodsList',
                 data : json,
                 success: function(data){
-//                    console.log(data);
+                   console.log(data);
                     for(var i = 0;i < data.list.length;i++){
                         str+='<li>'+
                                 '<a href="/goodsDetails/'+data.list[i]['id']+'" target="_blank">'+
@@ -349,7 +349,7 @@
                                 '</li>';
                     }
                     //console.log(data);
-                    renderPage(data.pages,data.pageNum, data.size);
+                    renderPage(data.pages,data.pageNum, data.size, false);
                     $('.goods_list .clearfix').html(str);
                     $('.total').html(data.total);
 
@@ -372,7 +372,7 @@
         function loadCatelog(level,id1,id2){
             var target='';
             var target2 = '';
-            var str = '<option>请选择</option>';
+            var str = '';//'<option>请选择</option>';
 
             if(level == 2){
                 target = '#level2';
@@ -389,9 +389,9 @@
                                 str += '<option data-id="'+ val.id +'">'+ val.value +'</option>';
                             }else if(level ==3){
                                 if(val.id == id2){
-                                    val.childCate.forEach(function (v,j) {
-                                        str += '<option data-id="'+ v.id+'">'+ v.value +'</option>'
-                                    })
+                                    // val.childCate.forEach(function (v,j) {
+                                    //     str += '<option data-id="'+ v.id+'">'+ v.value +'</option>'
+                                    // })
                                 }
                             }
                         })
@@ -423,7 +423,7 @@
         }
         function loadBrands(id){
             var str = '<a href="javascript:;">全部</a>';
-            if(id){
+            if(id || id === 0){
                 catelog.level1.forEach(function (value,index) {
                     if(value.id == id){
                         value.level2[0]['brands'].forEach(function (val,i) {
@@ -435,7 +435,7 @@
             module.goodsListBody.brands = '';
             $('.condition .brands').html(str)
         }
-        function renderPage(pages,pageNumber,size){
+        function renderPage(pages,pageNumber,size,f){
             var  str = '';
             if(size===undefined){
                 for( var i = 0; i < 10; i++){
@@ -460,6 +460,13 @@
                 $('.page_num a:eq('+ (pageNumber - a*10 -1) +')').addClass('active');
                 $('.page_num a:eq('+ (pageNumber - a*10 -1 + 10) +')').addClass('active');
             }
+            if(f){
+                module.goodsListBody.brands = '';
+                module.goodsListBody.catelog1 = '';
+                module.goodsListBody.catelog2 = '';
+                module.goodsListBody.catelog3 = '';
+            }
+
 
         }
     </script>

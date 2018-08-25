@@ -25,6 +25,7 @@ module.exports = function(app){
 		// optional callback
 		function(err, results) {
 			json.catelog = results[0];
+            console.log(json.catelog);
 			json.mallIndex = results[1];
 		    // results is now equal to ['one', 'two']
 		    res.render('index_mall',{results:json});

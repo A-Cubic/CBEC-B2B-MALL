@@ -15,24 +15,24 @@
                         {{#each this.level2}}
                             <div class="cate_level_3 usage clearfix">
                                 <span class="cate_level_3_tit f-l">分类 ></span>
-                                <div class="f-l">
+                                <div class="f-l" style="height: 370px">
                                     {{#each this.catelog}}
-                                        <div>
-                                            <a href="/goodsList/?catelog1={{../../this.value}}&catelog2={{this.value}}" target="_blank">{{this.value}}></a>
-                                            {{#each this.childCate}}
-                                                <a href="/goodsList?catelog1={{../../../this.value}}&catelog2={{../this.value}}&catelog3={{this.value}}" target="_blank">{{this.value}}</a>
-                                            {{/each}}
-                                        </div>
+                                        <!--<div>-->
+                                            <a href="/goodsList?catelog1={{../../this.id}}&catelog2={{this.id}}" target="_blank">{{this.value}} / </a>
+                                            <!--{{#each this.childCate}}-->
+                                                <!--<a href="/goodsList?catelog1={{../../../this.value}}&catelog2={{../this.value}}&catelog3={{this.value}}" target="_blank">{{this.value}}</a>-->
+                                            <!--{{/each}}-->
+                                        <!--</div>-->
                                     {{/each}}
                                 </div>
                             </div>
-                            <div class="cate_level_3 brands clearfix">
+                            <div class="cate_level_3 other brands clearfix">
                                 <span class="cate_level_3_tit f-l">品牌 ></span>
                                 <div class="f-l">
                                     {{#each this.brands}}
-                                        <div>
-                                            <a href="/goodsList?brands={{this.value}}" target="_blank">{{this.value}}</a>
-                                        </div>
+                                        <!--<div>-->
+                                            <a href="/goodsList?brands={{this.value}}" target="_blank">{{this.value}} / </a>
+                                        <!--</div>-->
                                     {{/each}}
                                 </div>
                             </div>

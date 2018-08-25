@@ -5,7 +5,7 @@ const URL = "http://api.llwell.net/web";
 module.exports = {
 	catalog : function(req,res,callback){
 		// http://192.168.1.101:8080/index_mall.json
-		fetch(URL+'/catalog ', {
+		fetch(URL+'/catalog', {
 			method: 'POST'
 		}) .then(res => res.json())
 			.then(json => {

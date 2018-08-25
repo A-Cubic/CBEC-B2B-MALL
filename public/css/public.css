@@ -151,7 +151,7 @@
   top: 40px;
   z-index: 10;
   width: 100%;
-  height: 395px;
+  height: 680px;
 }
 .nav .goods_catelog .goods_panel .cate_level_1 {
   position: absolute;
@@ -177,12 +177,15 @@
   background: #efefef;
 }
 .nav .goods_catelog .goods_panel .cate_level_3 {
-  width: 50%;
+  width: 30%;
   float: left;
   padding: 10px 0 0 30px;
   box-sizing: border-box;
   line-height: 30px;
   font-size: 14px;
+}
+.nav .goods_catelog .goods_panel .other {
+  width: 60%;
 }
 .nav .goods_catelog .goods_panel .cate_level_3 .cate_level_3_tit {
   margin-right: 30px;
