@@ -116,9 +116,14 @@
         <a href="javascript:;" data-type="3">价格<i class="icon_sort"></i></a>
 
     </div>
-    {{#with list}}
-        {{>goods_list}}
-    {{/with}}
+    <div class="goods_list">
+        <ul class="clearfix">
+            {{#with list}}
+                {{>goods_list}}
+            {{/with}}
+        </ul>
+    </div>
+
     <div class="pagenation f-r">
         <a href="#" class="last">上一页</a>
         <span class="page_num">
@@ -348,7 +353,7 @@
                                 '</a>'+
                                 '</li>';
                     }
-                    //console.log(data);
+                    console.log(str);
                     renderPage(data.pages,data.pageNum, data.size, false);
                     $('.goods_list .clearfix').html(str);
                     $('.total').html(data.total);
@@ -464,6 +469,7 @@
                 module.goodsListBody.brands = '';
                 module.goodsListBody.catelog1 = '';
                 module.goodsListBody.catelog2 = '';
+                module.goodsListBody.catelog3 = '';
                 module.goodsListBody.catelog3 = '';
             }
 
