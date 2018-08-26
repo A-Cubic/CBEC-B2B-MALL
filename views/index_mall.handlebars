@@ -29,15 +29,19 @@
             优选品牌
             <span class="text f-r">
                 {{#each this.brands}}
-                <a href="{{advurl}}" target="_blank">{{advname}}</a>
+                <a href="/goodsList?brands={{advname}}" target="_blank">{{advname}}</a>
                 {{/each}}
                 <a href="/goodsList" class="more f-r" target="_blank">更多</a>
             </span>
         </h2>
     </div>
-    {{#with this.goods}}
-        {{>goods_list}}
-    {{/with}}
+    <div class="goods_list">
+        <ul class="clearfix">
+            {{#with this.goods}}
+                {{>goods_list}}
+            {{/with}}
+        </ul>
+    </div>
     <div style="width:100%;height:76px" ></div>
 </div>
 {{/with}}
