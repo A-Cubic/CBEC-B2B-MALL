@@ -29,8 +29,8 @@ var handlebars = require('express-handlebars').create({
             return this[key] == value ? 'active' : '';
         },
         getOne : function(index){
-          console.log(index);
-          console.log(this);
+          // console.log(index);
+          // console.log(this);
           return this[index]
         }
     }

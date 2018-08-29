@@ -78,9 +78,9 @@
                     {{!/each}}
                 {{!/each}}
             {{!/each}}-->
-            {{#each this.brands}}
-                <a href="javascript:;" data-id="{{advname}}">{{advname}}</a>
-            {{/each}}
+            <!--{{#each this.brands}}-->
+                <!--<a href="javascript:;" data-id="{{advname}}">{{advname}}</a>-->
+            <!--{{/each}}-->
         </div>
     </div>
 </div>
@@ -159,8 +159,14 @@
         module.goodsListBody.pageSize = $('#pageSize').val();
         module.hasNextPage = $('#hasNextPage').val();
         module.hasPreviousPage = $('#hasPreviousPage').val();
-        console.log(module.goodsListBody);
-        
+        // console.log(module.goodsListBody);
+
+        $(function () {
+            getCatelog(module.goodsListBody, function () {
+                loadBrands(parseInt($("#level1").find('option:selected').attr('data-id')));
+            });
+        });
+
         renderPage($('#pages').val()*1,1,$('#size').val(),true);
 
         //filter
@@ -173,6 +179,12 @@
             module.goodsListBody['pageNumber'] = 1;
             //console.log(module.goodsListBody);
             postFilter(module.goodsListBody);
+
+            if(key === "sendType" || key === "country"){
+                getCatelog(module.goodsListBody, function () {
+                    loadBrands(parseInt($("#level1").find('option:selected').attr('data-id')));
+                });
+            }
         });
 
         var catelog = [];
@@ -182,28 +194,34 @@
             module.goodsListBody['catelog1'] = id;
             module.goodsListBody['catelog2'] = '';
             module.goodsListBody.brands = '';
-            if(catelog.length==0){
-                getCatelog(function () {
-                    loadCatelog(2,id);
-                    loadBrands(id)
-                });
-            }else {
+            // if(catelog.length==0){
+            //     getCatelog(module.goodsListBody, function () {
+            //         loadCatelog(2,id);
+            //         loadBrands(id)
+            //     });
+            // }else {
+            //     loadCatelog(2,id);
+            //     loadBrands(id);
+            // }
+            getCatelog(module.goodsListBody, function () {
                 loadCatelog(2,id);
-                loadBrands(id);
-            }
-
+                loadBrands(id)
+            });
         });
 
         $('#level2').change(function () {
             var id1 = parseInt($('#level1').find('option:selected').attr('data-id'));
             var id2 = parseInt($(this).find('option:selected').attr('data-id'));
-            if(catelog.length==0){
-                getCatelog(function () {
-                    loadCatelog(3,id1,id2)
-                });
-            }else {
-                loadCatelog(3,id1,id2);
-            }
+            // if(catelog.length==0){
+            //     getCatelog(module.goodsListBody, function () {
+            //         loadCatelog(3,id1,id2)
+            //     });
+            // }else {
+            //     loadCatelog(3,id1,id2);
+            // }
+            getCatelog(module.goodsListBody, function () {
+                loadCatelog(3,id1,id2)
+            });
             module.goodsListBody['catelog1'] = id1;
             module.goodsListBody['catelog2'] = id2;
             module.goodsListBody['pageNumber'] = 1;
@@ -339,7 +357,7 @@
                 url : '/goodsList',
                 data : json,
                 success: function(data){
-                   console.log(data);
+                   // console.log(data);
                     for(var i = 0;i < data.list.length;i++){
                         str+='<li>'+
                                 '<a href="/goodsDetails/'+data.list[i]['id']+'" target="_blank">'+
@@ -353,7 +371,7 @@
                                 '</a>'+
                                 '</li>';
                     }
-                    console.log(str);
+                    // console.log(str);
                     renderPage(data.pages,data.pageNum, data.size, false);
                     $('.goods_list .clearfix').html(str);
                     $('.total').html(data.total);
@@ -364,11 +382,13 @@
                 }
             })
         }
-        function getCatelog(callback){
+        function getCatelog(json,callback){
             $.ajax({
+                type : 'post',
                 url : '/catelog',
+                data: json,
                 success: function(data){
-                    console.log(data);
+                    // console.log(data);
                     catelog = data;
                     callback();
                 }
@@ -449,7 +469,7 @@
                 $('.page_num').html(str);
                 $('.page_num a:eq('+ 0 +')').addClass('active');
             }else{
-                console.log(module.goodsListBody.pageNumber);
+                // console.log(module.goodsListBody.pageNumber);
                 var a =  Math.ceil(module.goodsListBody.pageNumber / 10)-1;
                 // var b =  module.goodsListBody.pageNumber % 10;
                 var c = size - a*10;

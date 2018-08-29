@@ -12,7 +12,7 @@ module.exports = function(app){
 		};
 		async.series([
 		    function(callback) {
-		        mall.catalog(req,res,function(results){
+		        mall.catalog(req, res, {}, function(results){
 	    		 callback(null,results);
 	    		});
 		    },
@@ -25,7 +25,7 @@ module.exports = function(app){
 		// optional callback
 		function(err, results) {
 			json.catelog = results[0];
-            console.log(json.catelog);
+            // console.log(json.catelog);
 			json.mallIndex = results[1];
 		    // results is now equal to ['one', 'two']
 		    res.render('index_mall',{results:json});
@@ -64,7 +64,7 @@ module.exports = function(app){
 	    		});
 		    },
 		    function(callback) {
-		    	 mall.catalog(req,res,function(results){
+		    	 mall.catalog(req,res,body,function(results){
 	    		 callback(null,results);
 	    		});
 		    }
@@ -87,8 +87,8 @@ module.exports = function(app){
 			}
 		})
 	});
-	app.get('/catelog', function (req,res) {
-		mall.catalog(req,res,function(results){
+	app.post('/catelog', function (req,res) {
+		mall.catalog(req,res,req.body,function(results){
 			res.json(results);
 		});
 	})

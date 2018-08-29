@@ -1,12 +1,14 @@
 const fetch = require('node-fetch');
 const URL = "http://api.llwell.net/web";
-// const URL = "http://172.16.10.100:9999/web";
+// const URL = "http://192.168.0.109:9999/web";
 
 module.exports = {
-	catalog : function(req,res,callback){
+	catalog : function(req,res,body,callback){
 		// http://192.168.1.101:8080/index_mall.json
 		fetch(URL+'/catalog', {
-			method: 'POST'
+			method: 'POST',
+            body :JSON.stringify(body),
+            headers: { 'Content-Type': 'application/json' }
 		}) .then(res => res.json())
 			.then(json => {
 			if(json.state == '0'){
