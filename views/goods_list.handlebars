@@ -219,12 +219,14 @@
             // }else {
             //     loadCatelog(3,id1,id2);
             // }
-            getCatelog(module.goodsListBody, function () {
-                loadCatelog(3,id1,id2)
-            });
             module.goodsListBody['catelog1'] = id1;
             module.goodsListBody['catelog2'] = id2;
             module.goodsListBody['pageNumber'] = 1;
+            getCatelog(module.goodsListBody, function () {
+                loadCatelog(3,id1,id2);
+                loadBrands(id1)
+            });
+
             postFilter(module.goodsListBody);
         });
 
@@ -364,7 +366,7 @@
                                 '<img src="'+ data.list[i]['slt'] +'" class="goods_pic">'+
                                 '<p class="desc">'+data.list[i]['goodsname']+'</p>'+
                                 '<div class="price">'+
-                                '<span class="f-l">￥'+data.list[i]['price']+'</span>'+
+                                '<span class="f-l">'+data.list[i]['price']+'</span>'+
                                 '<div class="like f-l"></div>'+
                                 '<!-- <div class="addCart f-r">加入采购单</div> -->'+
                                 '</div>'+
